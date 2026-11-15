@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<title>Party 18+</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Party 18+">
+<meta name="theme-color" content="#100c1f">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+/* Party 18+ — stile (mobile first, tema scuro) */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+:root{--bg:#100c1f;--card:rgba(255,255,255,.065);--card2:rgba(255,255,255,.1);--line:rgba(255,255,255,.12);--ac:#ff3d68;--ac3:#ff7a45;--ac2:#ffc933;--ok:#4ff0a8;--tx:#f7f4ff;--mut:#aaa5cc;--sp:.6s}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{margin:0;font-family:'Fredoka',system-ui,-apple-system,sans-serif;color:var(--tx);background:var(--bg);overscroll-behavior-y:none;-webkit-user-select:none;user-select:none;line-height:1.35}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 10% -5%,#40207a 0,transparent 50%),radial-gradient(circle at 100% 105%,#7d1a4a 0,transparent 50%)}
+body.flash::after{content:'';position:fixed;inset:0;background:#fff;z-index:100;animation:fl .5s ease forwards;pointer-events:none}
+@keyframes fl{from{opacity:.9}to{opacity:0}}
+input{-webkit-user-select:text;user-select:text}
+button{font-family:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+#app{max-width:480px;margin:0 auto;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;padding:0 calc(16px + env(safe-area-inset-right)) 0 calc(16px + env(safe-area-inset-left))}
+#app.anim main{animation:in .3s ease}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.7);opacity:0}70%{transform:scale(1.06)}100%{transform:none;opacity:1}}
+.top{position:sticky;top:0;z-index:10;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top)) 0 10px;background:linear-gradient(var(--bg) 65%,rgba(16,12,31,0))}
+.ib{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card2);font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;padding:0 0 2px}
+.ib:active{transform:scale(.9)}
+.tt{text-align:center;font-weight:600;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+main{flex:1;padding:6px 0 12px}
+main.notop{padding-top:calc(22px + env(safe-area-inset-top))}
+.foot{position:sticky;bottom:0;z-index:9;display:flex;flex-direction:column;gap:10px;padding:18px 0 calc(14px + env(safe-area-inset-bottom));background:linear-gradient(rgba(16,12,31,0),var(--bg) 28%)}
+h1{font-size:36px;line-height:1.05;margin:6px 0;text-align:center;font-weight:700}
+h1 span{background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+h1.win{color:var(--ok)}h1.lose{color:var(--ac)}
+h2{font-size:19px;margin:0}
+.sect{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.12em;margin:22px 4px 10px;font-weight:600}
+.cap{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.12em;margin:0 0 12px;font-weight:600}
+.lab{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.12em;margin:18px 0 10px;font-weight:600}
+.lab small{text-transform:none;letter-spacing:0;font-weight:400}
+.logo{font-size:60px;text-align:center;line-height:1.1;filter:drop-shadow(0 6px 18px rgba(255,61,104,.45));animation:pop .45s ease}
+.logo.xl{font-size:92px}.logo.sm{font-size:44px}
+.hero{text-align:center;margin-bottom:14px}.hero.sm h1{font-size:32px}
+.sub{text-align:center;color:var(--mut);margin:0 0 16px;font-size:16.5px}
+.muted{color:var(--mut);margin:6px 0;font-size:15.5px}
+.center{text-align:center}
+.kicker{color:var(--ac2);font-weight:600;font-size:15px;margin:0 0 6px;letter-spacing:.04em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px;margin-bottom:12px}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.pill{display:inline-flex;align-items:center;gap:6px;background:var(--card2);border:1px solid var(--line);border-radius:30px;padding:6px 12px;font-size:14px;font-weight:600;max-width:70%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.pill.ghost{background:none}
+.link{background:none;border:0;color:var(--ac2);font-size:15.5px;padding:10px 4px;min-height:44px;display:block;margin:4px auto;text-decoration:underline;text-underline-offset:3px}
+.link.sm{font-size:14.5px;margin:0;padding:6px 0;min-height:auto;text-decoration:none}
+.btn{width:100%;min-height:56px;padding:14px 18px;border:0;border-radius:18px;background:linear-gradient(135deg,var(--ac),var(--ac3));color:#fff;font-size:18.5px;font-weight:600;box-shadow:0 10px 24px rgba(255,61,104,.32);transition:transform .12s,opacity .2s}
+.btn.big{min-height:64px;font-size:20px}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.35;box-shadow:none}
+.btn.sec{background:var(--card2);border:1px solid var(--line);box-shadow:none;font-weight:500;font-size:17px}
+.btn.gold{background:linear-gradient(135deg,var(--ac2),#ff9f1c);color:#2b1d00;box-shadow:0 10px 24px rgba(255,201,51,.28)}
+.btn.pass{min-height:36vh;font-size:30px;font-weight:700;background:linear-gradient(135deg,var(--ac2),#ff9f1c);color:#2b1d00;border-radius:28px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.pchip{display:inline-flex;align-items:center;gap:4px;background:var(--card2);border:1px solid var(--line);border-radius:30px;padding:4px 4px 4px 14px;font-size:16px}
+.pchip button{width:34px;height:34px;border-radius:50%;border:0;background:rgba(0,0,0,.25);font-size:13px;color:var(--mut)}
+.add{display:flex;gap:8px}
+.add input{flex:1;min-width:0;height:52px;padding:0 14px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.3);color:var(--tx);font-size:17px;font-family:inherit;outline:none}
+.add input:focus{border-color:var(--ac)}
+.addb{width:52px;height:52px;flex:none;border-radius:14px;border:0;background:var(--ac);font-size:28px;color:#fff}
+.menu{display:flex;flex-direction:column;gap:10px}
+.game{display:flex;gap:14px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:20px;padding:14px;min-height:88px;width:100%}
+.game:active{transform:scale(.98);background:var(--card2)}
+.game>b{font-size:38px;width:52px;text-align:center;flex:none}
+.game div{flex:1}
+.game h3{margin:0 0 3px;font-size:19px}
+.game p{margin:0;opacity:.82;font-size:14.5px}
+.game small{display:block;color:var(--mut);font-size:13px;margin-top:4px}
+.game i{font-style:normal;font-size:28px;color:var(--mut)}
+.how{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.how li{display:flex;gap:12px;align-items:flex-start}
+.how .n{flex:none;width:38px;height:38px;border-radius:12px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700}
+.how p{margin:7px 0 0;font-size:16.5px}
+.how b,.say b{color:var(--ac2);font-weight:600}
+.ex{margin-top:14px;padding:12px 14px;border-radius:14px;background:rgba(255,201,51,.1);border:1px solid rgba(255,201,51,.25)}
+.ex>b{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ac2)}
+.ex p{margin:4px 0 0;font-size:15.5px}
+details{margin-top:12px}
+summary{color:var(--ac2);font-size:15px;padding:8px 0;list-style:none;cursor:pointer}
+summary::before{content:'▸ '}details[open] summary::before{content:'▾ '}
+summary::-webkit-details-marker{display:none}
+.full{margin:6px 0;padding-left:20px;font-size:15px;opacity:.9}
+.full li{margin-bottom:8px}
+.tip{color:var(--ac2);font-size:15px;margin:8px 0 0}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0}
+.srow span{font-size:17px}.srow small{display:block;color:var(--mut);font-size:13px}
+.stepper{display:flex;align-items:center;gap:4px;flex:none}
+.stepper button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--card2);font-size:24px}
+.stepper button:active{background:var(--ac)}
+.stepper b{min-width:58px;text-align:center;font-size:19px}
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cat{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:16px;padding:10px 6px;min-height:76px;font-size:14.5px;position:relative;opacity:.5}
+.cat b{display:block;font-size:26px}
+.cat.on{opacity:1;background:linear-gradient(135deg,rgba(255,61,104,.4),rgba(255,122,69,.3));border-color:var(--ac)}
+.cat.on::after{content:'✓';position:absolute;top:6px;right:10px;font-size:13px}
+.sw{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;font-size:16.5px;cursor:pointer}
+.sw input{position:absolute;opacity:0;pointer-events:none}
+.sw i{flex:none;width:52px;height:30px;border-radius:30px;background:rgba(255,255,255,.18);position:relative;transition:.2s}
+.sw i::after{content:'';position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s}
+.sw input:checked+i{background:var(--ac)}
+.sw input:checked+i::after{left:25px}
+.warn{color:var(--ac2);text-align:center;margin:0}
+.phase{display:flex;gap:5px;margin:2px 0 16px}
+.phase span{flex:1;text-align:center;font-size:12.5px;padding:7px 0;border-radius:10px;background:rgba(255,255,255,.06);color:var(--mut)}
+.phase span.on{background:var(--ac);color:#fff;font-weight:600}
+.phase span.done{color:var(--ok)}
+.dots{display:flex;justify-content:center;gap:7px;flex-wrap:wrap}
+.dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.18)}
+.dots i.done{background:var(--ok)}.dots i.on{background:var(--ac2);transform:scale(1.3)}
+.av{width:56px;height:56px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#fff;background:linear-gradient(135deg,hsl(var(--h),75%,58%),hsl(calc(var(--h) + 50),75%,46%));box-shadow:0 10px 26px hsla(var(--h),75%,50%,.4);flex:none}
+.av.xl{width:100px;height:100px;font-size:44px;margin:12px auto 8px;animation:pop .45s ease}
+.av.sm{width:36px;height:36px;font-size:16px;box-shadow:none;margin:0}
+.name{font-size:40px;font-weight:700;line-height:1.1;margin:2px 0 8px;word-break:break-word;animation:pop .45s ease}
+.hold{position:relative;height:340px;border-radius:28px;overflow:hidden;margin:6px 0 10px;touch-action:none;-webkit-touch-callout:none}
+.face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;text-align:center;border-radius:28px}
+.secret{background:linear-gradient(160deg,#3a2e12,#2a2140);border:1px solid rgba(255,201,51,.35)}
+.secret.bad{background:linear-gradient(160deg,#5a1027,#2a0a18);border-color:rgba(255,61,104,.5)}
+.cover{z-index:2;background:linear-gradient(160deg,#2b2058,#481a4c);border:2px dashed rgba(255,255,255,.3);transition:opacity .08s}
+.cover .fing{font-size:62px;animation:press 1.6s infinite}
+.cover b{font-size:22px;margin-top:8px}.cover span{color:var(--mut);font-size:15px;margin-top:6px;max-width:250px}
+@keyframes press{0%,100%{transform:translateY(0)}50%{transform:translateY(8px) scale(.92)}}
+.hold.show .cover{opacity:0}
+.emoji{font-size:50px}
+.word{font-size:42px;font-weight:700;color:var(--ac2);line-height:1.1;word-break:break-word;margin:6px 0}
+.imp{font-size:34px;font-weight:700;line-height:1.1;margin:4px 0}
+.hint{color:var(--mut);margin:8px 0 0;font-size:16px}
+.clue{margin-top:12px;padding:10px 14px;border-radius:14px;background:rgba(0,0,0,.35);font-size:18px;color:var(--ac2)}
+.clue small{display:block;color:var(--mut);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.note{font-size:14.5px;opacity:.85;margin:14px 0 0;max-width:290px}
+.tbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.timer-chip{border:1px solid var(--line);background:var(--card2);border-radius:30px;padding:6px 14px;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;min-height:44px}
+.timer-chip em{font-style:normal;font-size:14px;opacity:.7;margin-left:4px}
+#tm.low{color:var(--ac)}
+.say{background:rgba(255,255,255,.06);border-left:4px solid var(--ac2);border-radius:14px;padding:12px 14px;margin:14px 0;font-size:16.5px;text-align:left}
+.order{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px}
+.order span{font-size:13.5px;padding:5px 10px;border-radius:20px;background:rgba(255,255,255,.06);color:var(--mut)}
+.order span.on{background:var(--ac);color:#fff}.order span.done{color:var(--ok)}
+.vote{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vote button{display:flex;align-items:center;gap:10px;min-height:64px;padding:10px 12px;border-radius:18px;border:2px solid var(--line);background:var(--card);font-size:17px;text-align:left;min-width:0}
+.vote button span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vote button.on{border-color:var(--ac);background:rgba(255,61,104,.25)}
+.tcard{min-height:220px;display:flex;align-items:center;justify-content:center;text-align:center;padding:26px 22px;border-radius:26px;margin:10px 0;background:linear-gradient(160deg,rgba(255,201,51,.15),rgba(255,255,255,.04));border:1px solid var(--line);animation:pop .4s ease}
+.tcard.bad{background:linear-gradient(160deg,rgba(255,61,104,.32),rgba(80,10,40,.4))}
+.tcard p{margin:0;font-size:26px;font-weight:600;line-height:1.25}
+.badge{display:inline-block;padding:6px 14px;border-radius:20px;background:rgba(123,140,255,.22);color:#c3c9ff;font-weight:600}
+.badge.bad{background:rgba(255,61,104,.25);color:#ff8fa8}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 4px}
+.choice button{min-height:170px;border-radius:22px;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:12px}
+.choice b{font-size:44px}.choice span{font-size:22px;font-weight:700}.choice small{font-size:13.5px;opacity:.85}
+.ch-o{background:linear-gradient(160deg,rgba(255,61,104,.45),rgba(255,122,69,.25))}
+.ch-v{background:linear-gradient(160deg,rgba(123,77,255,.45),rgba(60,120,255,.25))}
+.choice button:active{transform:scale(.96)}
+.pick{display:flex;flex-wrap:wrap;gap:8px}
+.pick button{min-height:44px;padding:8px 14px;border-radius:30px;border:1px solid var(--line);background:var(--card);font-size:15.5px}
+.pick button.on{background:var(--ac2);color:#2b1d00;border-color:var(--ac2);font-weight:600}
+.pick button.on::before{content:'🍺 '}
+.board{list-style:none;margin:0;padding:0}
+.board li{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:16.5px}
+.board li:last-child{border:0}
+.board li>i{font-style:normal;width:26px;text-align:center;color:var(--mut)}
+.board span{flex:1}.board b{color:var(--ac2)}
+.board em{font-style:normal;color:var(--ok);font-size:13px;margin-left:6px}
+.chip{display:inline-block;background:var(--card2);border-radius:30px;padding:8px 16px;margin:4px;font-size:18px}
+.chip.bad{background:linear-gradient(135deg,var(--ac),var(--ac3));font-weight:600}
+.big-p{font-size:19px;margin:0 0 6px}
+.bombz{padding-top:3vh}
+.bomb{font-size:130px;display:inline-block;animation:shake var(--sp) infinite;filter:drop-shadow(0 10px 30px rgba(255,61,104,.6))}
+.bomb.hop{animation:pop .25s ease,shake var(--sp) infinite .25s}
+@keyframes shake{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg) scale(1.06)}}
+.sheet{position:fixed;inset:0;z-index:50;background:rgba(8,6,18,.75);display:flex;align-items:flex-end;justify-content:center;animation:fade .2s}
+.sbox{width:100%;max-width:480px;max-height:88vh;overflow:auto;background:#1b1533;border:1px solid var(--line);border-radius:26px 26px 0 0;padding:20px 16px calc(16px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;animation:up .25s ease}
+.sbox h2{text-align:center;font-size:22px}.sbox .card{margin-bottom:4px}
+@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+@keyframes fade{from{opacity:0}}
+.toast{position:fixed;left:50%;bottom:calc(160px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:60;background:#2a2347;border:1px solid var(--line);padding:12px 18px;border-radius:16px;font-size:15.5px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:opacity .3s;width:max-content;max-width:88vw;text-align:center}
+.toast.out{opacity:0}
+.gate{padding-top:3vh}
+@media (max-height:690px){.logo{font-size:46px}.logo.xl{font-size:70px}h1{font-size:30px}.hold{height:290px}.av.xl{width:78px;height:78px;font-size:34px}.name{font-size:34px}.tcard{min-height:180px}.tcard p{font-size:23px}.choice button{min-height:140px}.bomb{font-size:100px}.btn.pass{min-height:30vh}}
+@media (max-width:360px){.word{font-size:36px}.vote{grid-template-columns:1fr}.game>b{font-size:32px;width:42px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ---------- Elementi aggiunti: nomi nelle carte, modalità, jolly, eventi, duelli ---------- */
+.nm{color:var(--ac2);font-weight:700}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px}
+.seg button{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:16px;padding:12px 10px;text-align:left;opacity:.55;min-height:96px}
+.seg button b{display:block;font-size:17px;margin-bottom:4px}.seg button small{font-size:13px;color:var(--mut);line-height:1.3;display:block}
+.seg button.on{opacity:1;border-color:var(--ac);background:linear-gradient(135deg,rgba(255,61,104,.35),rgba(255,122,69,.2))}
+.nobody{width:100%;margin-top:10px;min-height:56px;border-radius:18px;border:2px dashed var(--line);background:none;font-size:16.5px}
+.nobody.on{border-color:var(--ac2);border-style:solid;background:rgba(255,201,51,.15);color:var(--ac2);font-weight:600}
+.jolly{border-radius:22px;padding:16px;margin:12px 0 4px;background:linear-gradient(135deg,#6b3bff,#ff3d68);text-align:center;animation:pop .5s ease;box-shadow:0 12px 30px rgba(107,59,255,.4)}
+.jolly .je{font-size:40px;line-height:1.1}.jolly>b{display:block;font-size:22px;margin-top:2px}.jolly p{margin:6px 0 0;font-size:16.5px}
+.jolly .nm{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.event{display:inline-block;padding:7px 16px;border-radius:20px;background:linear-gradient(135deg,#6b3bff,#ff3d68);font-weight:600;font-size:15px;margin:4px 0;animation:pop .45s ease}
+.duel{display:flex;align-items:center;justify-content:center;gap:16px;margin:10px 0 2px}
+.dn{display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:600;max-width:40%;min-width:0}
+.dn span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vs{font-weight:700;color:var(--ac);font-size:22px}
+.cat-big{margin:4px auto 8px;padding:12px 16px;border-radius:18px;background:rgba(255,201,51,.14);border:1px solid rgba(255,201,51,.35);font-size:21px;font-weight:600;color:var(--ac2);max-width:360px;animation:pop .45s ease}
+.cat-big small{display:block;color:var(--mut);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:2px}
+.withcat .bomb{font-size:100px}
+.withcat.bombz{padding-top:0}
+/* ---------- Ruota del peccato ---------- */
+.wheel-wrap{position:relative;width:min(80vw,330px);aspect-ratio:1;margin:6px auto 4px}
+.wheel{width:100%;height:100%;display:block;border-radius:50%;transform-origin:50% 50%;transition:transform 4.2s cubic-bezier(.12,.72,.1,1);box-shadow:0 0 0 6px rgba(255,255,255,.08),0 20px 50px rgba(0,0,0,.5)}
+.pin{position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-top:30px solid var(--ac2);filter:drop-shadow(0 4px 6px rgba(0,0,0,.5));z-index:2}
+.hub{position:absolute;inset:39%;border-radius:50%;background:#1b1533;border:3px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:28px;z-index:1}
+.res{min-height:78px;margin-top:8px}
+.confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:80}
+@media (max-height:690px){.wheel-wrap{width:min(70vw,280px)}.withcat .bomb{font-size:80px}}
+/* ---------- Livelli, Serata, premi, carte personalizzate ---------- */
+.spice{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.spice button{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:16px;padding:10px 6px;min-height:104px;opacity:.55;display:flex;flex-direction:column;align-items:center;gap:2px}
+.spice b{font-size:20px;letter-spacing:-3px}.spice span{font-size:16px;font-weight:600}.spice small{font-size:12px;color:var(--mut);line-height:1.25}
+.spice button.on{opacity:1;border-color:var(--ac);background:linear-gradient(135deg,rgba(255,61,104,.35),rgba(255,122,69,.2))}
+.game.serata{background:linear-gradient(135deg,#6b3bff,#ff3d68 60%,#ff7a45);border:0;box-shadow:0 14px 34px rgba(255,61,104,.35);margin:2px 0 4px}
+.game.serata p{opacity:.95}.game.serata i{color:#fff}
+.serbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;margin:0 0 12px;border-radius:14px;background:linear-gradient(135deg,rgba(107,59,255,.35),rgba(255,61,104,.3));font-size:14px;font-weight:600}
+.sdots{display:flex;gap:5px}.sdots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3)}.sdots i.on{background:var(--ok)}
+.slot{font-size:110px;line-height:1.1;margin:10px 0;filter:drop-shadow(0 8px 24px rgba(255,61,104,.5))}
+.slot.land{animation:pop .5s ease}
+.later{opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s}.later.shown{opacity:1;transform:none}
+.awards{display:flex;flex-direction:column;gap:10px}
+.award{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:12px 14px;animation:in .4s ease both}
+.award>b{font-size:40px;width:52px;text-align:center;flex:none}
+.award small{color:var(--ac2);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.award h3{margin:2px 0 0;font-size:21px}.award p{margin:2px 0 0;color:var(--mut);font-size:14.5px}
+.shareimg{width:100%;border-radius:18px;display:block;-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto}
+.ctype{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.ctype button{min-height:44px;padding:8px 14px;border-radius:30px;border:1px solid var(--line);background:var(--card);font-size:15px}
+.ctype button.on{background:var(--ac);border-color:var(--ac);font-weight:600}
+textarea{width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.3);color:var(--tx);font-size:17px;font-family:inherit;outline:none;resize:none;-webkit-user-select:text;user-select:text}
+textarea:focus{border-color:var(--ac)}
+.clist{list-style:none;margin:0;padding:0}
+.clist li{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.clist li:last-child{border:0}
+.clist p{flex:1;margin:0;font-size:15.5px}.clist span{font-size:20px}
+.clist button{width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.08);color:var(--mut);flex:none}
+
+</style>
+</head>
+<body>
+<div id="app"></div>
+<!-- Ordine di caricamento: contenuti, nucleo, un file per gioco, avvio -->
+<script>
+/* =====================================================================
+   Party 18+ — CONTENUTI
+   Qui ci sono solo dati: parole, carte, regole e l'elenco dei giochi.
+   Per aggiungere contenuti basta modificare questo file.
+   Le carte sono divise per livello di piccantezza (1 Soft, 2 Hot, 3 Estremo).
+   Segnaposto nelle carte: {A} e {B} vengono sostituiti con nomi di
+   giocatori presi a caso (mai chi sta giocando il turno).
+   ===================================================================== */
+
+/* L'Impostore — ogni parola: [indizio per l'impostore, parola gemella per la modalità Infiltrato] */
+const CATS={
+"Camera da letto":{e:"🔥",w:{
+ "Lingerie":["Pizzo e seta che si indossa per essere tolta","Costume da bagno"],
+ "Manette":["Metallo che stringe i polsi, non solo per i poliziotti","Corda"],
+ "Benda sugli occhi":["Toglie la vista, aumenta il resto","Maschera"],
+ "Olio da massaggio":["Scivoloso e profumato, serve alle mani","Crema solare"],
+ "Preservativo":["Piccolo, si apre con i denti e protegge","Pillola"],
+ "Lenzuola di seta":["Si scivola dappertutto","Accappatoio"],
+ "Frustino":["Schiocca e fa arrossire","Cintura"],
+ "Fragole e panna":["Dessert che non finisce nel piatto","Cioccolato fuso"],
+ "Specchio sul soffitto":["Ti guardi mentre sei sdraiato","Telecamera"],
+ "Candele profumate":["Luce soffusa e atmosfera giusta","Incenso"],
+ "Pigiama sexy":["Corto, trasparente, non per dormire","Vestaglia"],
+ "Letto matrimoniale":["Spazio per due, cigola se esageri","Divano"],
+ "Lubrificante":["Serve per scivolare meglio","Burrocacao"],
+ "Cuscino":["Si morde o si mette sotto la schiena","Peluche"]}},
+"Seduzione":{e:"💋",w:{
+ "Bacio alla francese":["Due lingue che si incontrano","Bacio a stampo"],
+ "Striptease":["Si toglie un indumento alla volta, a tempo di musica","Lap dance"],
+ "Occhiolino":["Una palpebra che promette","Sorriso malizioso"],
+ "Tacchi a spillo":["Sottili, alti, fanno ondeggiare","Stivali"],
+ "Scollatura":["Dove cade lo sguardo","Minigonna"],
+ "Pole dance":["Palo, acrobazia e sensualità","Twerking"],
+ "Ballo sensuale":["Fianchi che si muovono vicini","Bachata"],
+ "Sguardo languido":["Occhi socchiusi che dicono tutto","Occhi dolci"],
+ "Succhiotto":["Segno rosso sul collo da nascondere","Morso"],
+ "Palpatina":["Mano dove non dovrebbe, di solito di nascosto","Pacca sul sedere"],
+ "Messaggio hot":["Arriva alle 2 di notte e non va letto in ufficio","Vocale hot"],
+ "Sexting":["Messaggi e foto da non mostrare alla mamma","Videochiamata"],
+ "Profumo":["Si sente prima di vederti","Deodorante"],
+ "Rossetto rosso":["Lascia l'impronta sul colletto","Smalto rosso"]}},
+"Serata folle":{e:"🍷",w:{
+ "Sbornia":["Il giorno dopo mal di testa e rimpianti","Postumi"],
+ "Shot":["Piccolo bicchiere, grande errore","Cocktail"],
+ "Gioco della bottiglia":["Gira e il collo decide chi baci","Obbligo o verità"],
+ "Strip poker":["Si perde e si resta in mutande","Twister"],
+ "Notte brava":["Si torna all'alba senza ricordare tutto","Festa di laurea"],
+ "Addio al nubilato":["Ultima serata libera, spesso con spogliarellista","Addio al celibato"],
+ "Festa in piscina":["Costumi minuscoli e alcol","Festa in spiaggia"],
+ "Karaoke da ubriachi":["Stonature e coraggio liquido","Discoteca"],
+ "Rimorchiare":["Provarci con uno sconosciuto in un locale","Fare il filo"],
+ "Amnesia del giorno dopo":["Chi era quella persona nel letto?","Risveglio sul divano"],
+ "Hotel a ore":["Si prende una camera per poco tempo","Motel"],
+ "Spogliarellista":["Arriva alla festa e il clima cambia","Cubista"]}},
+"Relazioni":{e:"💔",w:{
+ "Tradimento":["Corna, bugie e chat nascoste","Bugia"],
+ "Ex":["Chi non va richiamato dopo mezzanotte","Vecchia fiamma"],
+ "Scappatella":["Una volta sola, meglio che nessuno sappia","Avventura di una notte"],
+ "Amante":["Il terzo incomodo che incomoda poco","Corteggiatore"],
+ "Appuntamento al buio":["Non sai chi ti aspetta al tavolo","Speed date"],
+ "Tinder":["Si scorre a destra per un match","Instagram"],
+ "Amici di letto":["Niente sentimenti, solo comodità","Coinquilini"],
+ "Relazione aperta":["Si può guardare altrove, con regole","Relazione a distanza"],
+ "Primo appuntamento":["Ansia, cena e dubbi sul bacio","Primo bacio"],
+ "Gelosia":["Controllare il telefono dell'altro","Possessività"],
+ "Chat segreta":["Messaggi nascosti con nome falso in rubrica","Profilo falso"],
+ "Luna di miele":["Viaggio dopo le nozze, letto protagonista","Fuga romantica"],
+ "Cotta":["Pensi sempre a qualcuno che non ti guarda","Colpo di fulmine"]}},
+"Sporco e volgare":{e:"🍆",w:{
+ "Culo":["Dietro, tondo, finisce nelle battute da bar","Fianchi"],
+ "Tette":["Due, davanti, non servono sempre a nutrire","Pettorali"],
+ "Erezione":["Succede quando non devi, di mattina o al cinema","Eccitazione"],
+ "Viagra":["Pillola blu per gli over 50 (e non solo)","Afrodisiaco"],
+ "Cronologia del browser":["Se la vede tua madre sei morto","Galleria del telefono"],
+ "Mutande":["Si cambiano ogni giorno, di solito","Calzini"],
+ "Peto a letto":["Rumore sotto le coperte, poi si finge niente","Rutto a tavola"],
+ "Doccia fredda":["Spegne l'ardore in un secondo","Secchiata d'acqua"],
+ "Vaffanculo":["Insulto nazionale in due sillabe e mezza","Stronzo"],
+ "Cazzata":["Quello che dici dopo il terzo bicchiere","Figuraccia"],
+ "Mal di testa":["La scusa più usata per non farlo","Stanchezza"],
+ "Sesso al telefono":["Si parla, non si tocca","Videochiamata hot"],
+ "Camgirl":["Lavora davanti a una webcam, di notte","Influencer"],
+ "Cellulite":["Buccia d'arancia che nessuno ammette di avere","Smagliature"]}},
+"Umorismo nero":{e:"💀",w:{
+ "Funerale":["Tutti vestiti di nero, qualcuno ride per nervosismo","Matrimonio"],
+ "Testamento":["Chi lo apre scopre chi ti odiava davvero","Contratto prematrimoniale"],
+ "Eredità":["Dopo la morte, litigi sui soldi","Vincita al lotto"],
+ "Divorzio":["Fine del matrimonio, inizio degli avvocati","Separazione"],
+ "Suocera":["La nemica per eccellenza nei film comici","Cognata"],
+ "Alimenti":["Paghi ogni mese per il passato","Mutuo"],
+ "Obitorio":["Frigo con ospiti silenziosi","Ospedale"],
+ "Apocalisse":["Fine del mondo, ultima festa","Pandemia"],
+ "Rimpianti":["Quello che dirai in punto di morte","Rimorsi"],
+ "Banca del seme":["Dove i soldi si fanno in modo molto manuale","Clinica della fertilità"],
+ "Zombie":["Morti che camminano e non pagano il biglietto","Vampiro"],
+ "Vedova nera":["Ragno che dopo l'amore ti mangia","Mantide religiosa"]}}
+};
+
+/* Jolly: escono a sorpresa in Obbligo o Verità. card: true = c'è anche la carta, 2 = due carte, false = niente carta */
+const JOLLY=[
+ {e:"🔁",t:"Rimbalzo",d:"Questa carta non la fai tu: la fa {A}.",card:true},
+ {e:"👯",t:"In coppia",d:"La fai tu, e subito dopo anche {A}.",card:true},
+ {e:"🪞",t:"Specchio",d:"Dopo averla fatta, giri la stessa carta a chi vuoi tu.",card:true},
+ {e:"📜",t:"Legislatore",d:"Niente carta: inventa una regola che vale fino alla fine della serata. Chi la infrange beve.",card:false},
+ {e:"🛡️",t:"Salvo",d:"Niente carta per te. In cambio scegli chi beve un sorso.",card:false},
+ {e:"🔥",t:"Doppia dose",d:"Pesca due carte e falle entrambe. Oppure bevi tre sorsi.",card:2}
+];
+
+/* Duelli: escono a sorpresa nel Più probabile, con due giocatori scelti a caso */
+const DUEL=["Chi bacia meglio?","Chi è più bravo a letto?","Chi ha più scheletri nell'armadio?","Chi tradirebbe per primo?","Chi ha più ex?","Chi è più perverso?","Chi durerebbe meno in una relazione seria?","Chi manda più messaggi da ubriaco?","Chi aprirebbe prima un OnlyFans?","Chi mente meglio?","Chi farebbe più figuracce a un primo appuntamento?","Chi ha la cronologia più imbarazzante?"];
+
+
+/* Patata bollente: categorie (chi ha il telefono dice una parola a tema prima di passarlo) */
+const PAT_CAT=["Una parte del corpo","Un posto dove l'hai fatto (o lo faresti)","Una scusa per non farlo","Un nome per un cocktail sexy","Una parolaccia","Un motivo per lasciare qualcuno","Un'app di incontri o un social","Un indumento intimo o sexy","Un cibo afrodisiaco o allusivo","Una cosa che dici la mattina dopo","Un soprannome per il partner","Il nome di un ex (vero o inventato)","Un difetto a letto","Un titolo di film porno inventato","Una cosa che trovi in una camera d'albergo","Un superalcolico o un cocktail","Una bugia da primo appuntamento","Qualcosa che non diresti mai a tua madre","Un posto dove rimorchiare","Un verso o un rumore imbarazzante"];
+
+/* Ruota del peccato: le azioni della seconda ruota. card: 'v' verità o 'o' obbligo; dr: sorsi da segnare (o 'all'); noRefuse: niente tasto rifiuto */
+const WHEEL=[
+ {e:"🍺",t:"Bevi",d:"Un sorso, senza discutere.",dr:1,noRefuse:true},
+ {e:"💬",t:"Verità",d:"Rispondi sinceramente a questa domanda.",card:"v"},
+ {e:"👑",t:"Re della serata",d:"Tutti bevono un sorso, tranne te.",dr:"all",noRefuse:true},
+ {e:"💋",t:"Bacio",d:"Dai un bacio a {A}: guancia, mano o dove ti lascia.",},
+ {e:"📜",t:"Legge",d:"Inventa una regola che vale fino alla fine della serata. Chi la infrange beve."},
+ {e:"🔥",t:"Obbligo",d:"Fai questa sfida, subito.",card:"o"},
+ {e:"🛡️",t:"Salvo",d:"Niente per te. Per stavolta.",noRefuse:true},
+ {e:"👉",t:"Scegli chi beve",d:"Indica qualcuno: beve due sorsi al posto tuo.",noRefuse:true},
+ {e:"🤐",t:"Muto",d:"Non puoi parlare fino al prossimo giro. Ogni parola, un sorso."},
+ {e:"🍻",t:"Bevi doppio",d:"Due sorsi. La ruota non perdona.",dr:2,noRefuse:true},
+ {e:"🔄",t:"Scambio",d:"Scambiati di posto con {A} e scambiatevi un indumento."},
+ {e:"🎯",t:"Bersaglio",d:"{A} ti fa una domanda qualsiasi: rispondi sinceramente o bevi tre sorsi."}
+];
+
+/* Obbligo o Verità — per livello: 1 Soft, 2 Hot, 3 Estremo */
+const OBB={
+1:["Imita {A} per 20 secondi: gli altri devono indovinare chi sei","Fai 10 flessioni sexy","Bacia appassionatamente il tuo braccio per 10 secondi","Mostra l'ultima foto in galleria, senza saltarne nessuna","Lascia che {A} scelga la tua foto profilo per 24 ore","Fissa {A} con sguardo sexy per 15 secondi senza ridere","Descrivi a {A} il tuo bacio ideale in 3 parole","Fai un balletto sexy sulla canzone che sceglie {A}","Imita {A} mentre ci prova con qualcuno","Fai una dichiarazione d'amore drammatica a {A}, da telenovela","Parla con un accento francese seducente fino al tuo prossimo turno","Fai una sfilata da modella o modello dalla porta al divano","Racconta il tuo primo bacio con la voce di un documentario","Lascia che {A} ti scriva una parola sulla mano con una penna","Fai una serenata di 15 secondi a {A}","Scrivi a {A} il messaggio più sdolcinato possibile e leggilo ad alta voce","Per un giro intero parla solo usando doppi sensi","Fai finta di essere al primo appuntamento con {A} per 30 secondi","Mima una scena di un film romantico: gli altri indovinano quale","Chiama un amico e chiedigli il consiglio d'amore più assurdo che gli viene"],
+2:["Fai un massaggio alle spalle di 1 minuto a {A}","Balla in modo sensuale per 20 secondi davanti a {A}","Manda un messaggio piccante all'ultima persona in chat (poi puoi cancellarlo)","Dai un bacio sulla guancia, sul collo o sulla mano a {A}, se è d'accordo","Racconta la tua fantasia più strana, senza nomi","Imita un gemito finto come in un film","Lascia che {A} legga la tua ultima chat per 10 secondi","Fai a {A} la proposta indecente più creativa che ti viene","Siediti in braccio a {A} fino al tuo prossimo turno","Fai lo spogliarello della sola giacca o felpa per 20 secondi","Sussurra qualcosa di hot all'orecchio di {A}","Mima la tua posizione preferita (vestito): gli altri devono indovinarla","Fai un complimento molto spinto a {A}","Bendati: {A} o {B} ti tocca la mano, indovina chi è","Scegli tra {A} e {B} chi porteresti in un hotel a ore, e spiega perché","Bevi due sorsi: uno per i tuoi peccati, uno per quelli di {A}","Fai un massaggio ai piedi a {A} per 30 secondi, se è d'accordo","Fai una lap dance di 15 secondi a una sedia vuota, guardando {A}","Dai a {A} la tua migliore frase da rimorchio, con convinzione","Fatti bendare e lascia che {A} ti imbocchi qualcosa","Racconta all'orecchio di {A} cosa faresti in un ascensore bloccato con lui o lei"],
+3:["Togli un indumento a scelta","Fai il tuo miglior verso da pornostar per 10 secondi","Lascia che il gruppo legga l'ultimo messaggio mandato a un ex","Recita qualcuno che finge di godere, da Oscar","Racconta la peggiore scusa che hai usato per non farlo","Elenca in 10 secondi 5 cose di cui ti vergogni a letto","Scrivi a tua madre solo «ho fatto una cazzata»: il gruppo decide se inviarlo","Descrivi il tuo ultimo sogno erotico","Togli due indumenti oppure bevi tre sorsi","Lascia che il gruppo scorra le tue ultime 10 ricerche su Google","Fai la recensione a stelle del tuo ultimo partner, senza nomi","Scrivi un messaggio all'ultima persona con cui hai flirtato: lo detta {A}","Fai 20 secondi di dirty talk rivolto a un cuscino","Metti like alla foto più vecchia del profilo del tuo ex, oppure bevi tre sorsi","Mostra al gruppo l'ultima foto nella cartella «eliminati di recente»","Fai la descrizione erotica di un cibo scelto da {A}","Dai una sculacciata a {A}, se è d'accordo, oppure fattela dare","Registra un vocale di 10 secondi con la voce più sexy che hai e mandalo a chi sceglie il gruppo","Racconta nei dettagli la tua peggior performance a letto","Rivela il nome più imbarazzante con cui hai salvato qualcuno in rubrica"]
+};
+const VER={
+1:["Quante persone hai baciato nell'ultimo anno?","Qual è stata la tua notte più folle?","Chi è stato il tuo miglior bacio?","Cosa trovi di attraente in {A}?","Baceresti {A} o {B}? Devi scegliere.","Hai mai avuto una cotta per l'amico o l'amica di un amico?","Hai mai spiato il telefono del partner?","Qual è il peggior appuntamento che hai avuto?","Qual è la frase da rimorchio più brutta che ti hanno detto?","Hai mai avuto una cotta per qualcuno in questa stanza?","Qual è la cosa più romantica che hai fatto per qualcuno?","Con quale persona famosa scapperesti stanotte?","Hai mai lasciato qualcuno per messaggio?","Qual è la bugia più grande che hai detto ai tuoi genitori?","Hai mai fatto ghosting? A chi e perché?","Da 1 a 10, quanto sei geloso o gelosa? Poi {A} dice il suo voto su di te","Qual è il messaggio più imbarazzante mandato alla persona sbagliata?","Qual è la cosa che ti fa perdere la testa in una persona?","Fino a che anno di foto sei arrivato spiando un ex sui social?","Chi è il tuo ex più imbarazzante?"],
+2:["Qual è la cosa più audace che hai fatto in un luogo pubblico?","Hai mai tradito o sei stato tradito? Racconta.","Qual è il tuo punto più sensibile?","Hai mai mandato foto di cui ti sei pentito?","Hai mai avuto un'avventura di una notte?","Qual è il messaggio più hot che hai ricevuto?","Qual è la cosa più piccante che hai cercato su internet?","Hai mai fatto una cosa a tre, o ci hai pensato?","Racconta un pettegolezzo piccante (vero) su {A}","Chiuso in ascensore una notte intera con {A}: cosa succede?","Qual è il difetto più grande di {A}? Dillo guardandolo negli occhi","Chi ha il peggior alito qui dentro, sinceramente?","Chi dei presenti ti ha deluso di più?","Quale vizio nascondi alla tua famiglia?","Qual è la cosa più strana che ti eccita?","Con chi di questa stanza passeresti una notte, se nessuno lo sapesse mai?","Qual è il posto più scomodo in cui l'hai fatto?","Quanto tempo è passato dall'ultima volta? Rispondi in giorni.","Luci accese o spente? Perché?","Hai mai flirtato con qualcuno solo per ottenere qualcosa?","Cosa pensi davvero del partner di {A}?"],
+3:["Qual è la fantasia che non hai mai detto a nessuno?","Hai mai fatto sesso in un posto strano? Dove?","Qual è la cosa più imbarazzante successa a letto?","Hai mai finto un orgasmo?","Cosa non faresti mai a letto?","Qual è la cosa più perversa che hai fatto o vorresti fare?","Qual è la bugia più grossa che hai detto per portarti qualcuno a letto?","Qual è il tuo peggior difetto a letto?","Cosa hai fatto per soldi di cui ti vergogni?","Qual è il tuo feticcio segreto?","Qual è la cosa più sporca che hai scritto in chat?","Qual è il tuo record personale in una notte?","Qual è la cosa più umiliante che hai fatto per riconquistare un ex?","Hai mai pensato a qualcun altro mentre eri con il partner? A chi?","Quanti partner hai avuto? Il numero vero, non quello che dici di solito.","Qual è la cosa più disgustosa che hai fatto da ubriaco?","Hai mai fatto sesso con qualcuno di cui non ricordavi il nome?","Racconta la tua peggiore esperienza a letto, con i dettagli.","Qual è la cosa più strana che hai guardato su un sito per adulti?","Se dovessi rifare una notte con un ex, quale sceglieresti?"]
+};
+/* Il più probabile */
+const PROB={
+1:["Chi bacia meglio, secondo voi?","Chi è il più probabile a sposarsi dopo una settimana?","Chi è il più probabile a flirtare con il cameriere?","Chi si innamora al primo appuntamento?","Chi è il più probabile a farsi cacciare da un locale?","Chi è il più probabile a mandare un messaggio all'ex alle 3 di notte?","Chi si farebbe tatuare il nome di un amante?","Chi ha il telefono più pieno di chat nascoste?","Chi è il più probabile a piangere al matrimonio di uno sconosciuto?","Chi si dimenticherebbe del primo anniversario?","Chi è il più probabile a farsi lasciare per messaggio?","Chi chiederebbe il numero al tavolo accanto?","Chi ha la playlist più imbarazzante?","Chi è il più probabile a finire in un reality sull'amore?","Chi si innamora sempre della persona sbagliata?","Chi fa più figuracce da ubriaco?","Chi ha più ex che lo odiano?","Chi è il più probabile a sposare il primo amore?","Chi guarda ancora le storie dell'ex?","Chi è il più probabile a perdersi tornando a casa stasera?"],
+2:["Chi è il più probabile a finire a letto con uno sconosciuto stasera?","Chi è il più probabile a tradire?","Chi è il più probabile a presentarsi nudo a una festa?","Chi è il più bugiardo quando parla di sesso?","Chi perderebbe per primo a strip poker?","Chi ha più probabilità di avere un amante segreto?","Chi ha avuto più storie di una notte?","Chi è il più timido a letto?","Chi è il più probabile a rubare il partner a un amico?","Chi si venderebbe per un viaggio gratis?","Chi è il più probabile a fare lo stronzo con l'ex?","Chi tradirebbe per primo, se fosse sicuro di non essere scoperto?","Chi sposerebbe un vecchio ricco per l'eredità?","Chi è il più probabile a morire per un'overdose di cazzate?","Chi finirebbe in galera per un delitto passionale?","Chi è il più probabile a ubriacarsi al funerale della nonna?","Chi è il più probabile a usare tre app di incontri insieme?","Chi ha mandato più foto hot nella vita?","Chi è il più probabile a baciare qualcuno stasera?","Chi tornerebbe con l'ex dopo aver giurato «mai più»?"],
+3:["Chi è il più probabile a finire in una cosa a tre?","Chi sarebbe il migliore in un film per adulti?","Chi ha il lato più perverso?","Chi manderebbe una foto hot al capo per sbaglio?","Chi è il peggiore a letto, secondo voi?","Chi finirebbe a fare la camgirl o il camboy?","Chi ha la cronologia del browser più disturbante?","Chi ha il feticcio più strano?","Chi è il più probabile a farlo in un bagno pubblico?","Chi ha il record di partner nel gruppo?","Chi è il più probabile ad aprire un OnlyFans dopo stasera?","Chi è il più probabile a finire in un club per scambisti?","Chi fingerebbe di più a letto?","Chi ha un numero di partner che non ammetterà mai?","Chi è il più probabile a farlo al primo appuntamento?","Chi è il più rumoroso a letto, secondo voi?","Chi è il più probabile a farlo in ufficio?","Chi ha il segreto più sporco di tutti?"]
+};
+/* Non ho mai */
+const MAI={
+1:["Non ho mai baciato qualcuno la sera stessa in cui l'ho conosciuto","Non ho mai avuto una cotta per un professore o un capo","Non ho mai scritto a un ex da ubriaco","Non ho mai usato un'app di incontri","Non ho mai spiato il telefono del partner","Non ho mai baciato qualcuno di questa stanza","Non ho mai fatto ghosting a qualcuno","Non ho mai lasciato qualcuno per messaggio","Non ho mai mentito sulla mia età per rimorchiare","Non ho mai spiato un ex sui social","Non ho mai pianto per amore in pubblico","Non ho mai avuto una cotta per il partner di un amico","Non ho mai baciato due persone nella stessa sera","Non ho mai mandato un messaggio alla persona sbagliata","Non ho mai finto di essere single","Non ho mai dimenticato il nome di qualcuno che ho baciato","Non ho mai avuto un appuntamento al buio","Non ho mai fatto il bagno nudo","Non ho mai detto «ti amo» senza pensarlo","Non ho mai flirtato per avere uno sconto o un favore"],
+2:["Non ho mai mandato foto o video hot","Non ho mai tradito un partner","Non ho mai avuto un'avventura di una notte","Non ho mai avuto un amico o un'amica di letto","Non ho mai fatto strip poker","Non ho mai dormito a casa di uno sconosciuto","Non ho mai mentito sul numero dei miei partner","Non ho mai fatto sesso in macchina","Non ho mai baciato una persona dello stesso sesso","Non ho mai fatto un sogno erotico su qualcuno di questa stanza","Non ho mai fatto sesso con l'ex di un amico","Non ho mai fatto sesso al primo appuntamento","Non ho mai fatto sexting con qualcuno mai visto dal vivo","Non ho mai fatto l'amore all'aperto","Non ho mai avuto una storia con un collega","Non ho mai baciato qualcuno solo per far ingelosire un altro","Non ho mai tradito guardando l'altro negli occhi","Non ho mai fatto sesso mentre qualcuno poteva sentire","Non ho mai indossato lingerie per fare una sorpresa","Non ho mai fatto sesso a casa dei miei genitori"],
+3:["Non ho mai fatto sesso in un posto pubblico","Non ho mai finto un orgasmo","Non ho mai fatto una cosa a tre","Non ho mai chiamato qualcuno con il nome sbagliato a letto","Non ho mai comprato un giocattolo per adulti","Non ho mai fatto sesso per ottenere qualcosa","Non ho mai fatto qualcosa di sporco in ufficio o a scuola","Non ho mai fatto sesso senza ricordare il nome dell'altro","Non ho mai insultato il partner durante il sesso","Non ho mai mandato nudi a qualcuno che non conoscevo","Non ho mai fatto sesso in un bagno pubblico","Non ho mai usato manette o una benda","Non ho mai girato un video a letto","Non ho mai fatto sesso con due persone diverse nello stesso giorno","Non ho mai pagato per qualcosa di sessuale","Non ho mai fatto sesso con qualcuno molto più grande di me","Non ho mai fatto sesso in un camerino","Non ho mai frequentato due persone insieme senza dirlo","Non ho mai fatto sesso al telefono","Non ho mai provato un gioco di ruolo a letto"]
+};
+/* Patata bollente: penitenze */
+const PEN={
+1:["Fai un complimento sexy a ogni giocatore","Descrivi il tuo tipo ideale senza dire nomi","Dì tre parolacce di fila, a ritmo","Tutti bevono tranne te: scegli chi beve doppio","Parla in rima fino al prossimo round","Imita un animale in calore per 10 secondi","Fai una serenata di 10 secondi a {A}","Lascia che {A} ti faccia la pettinatura che vuole","Racconta il tuo appuntamento più disastroso","Fai 10 squat cantando una canzone d'amore","Chiama {A} «amore mio» fino al prossimo round","Bevi un sorso con le mani dietro la schiena","{A} ti dà un soprannome che vale per tutta la serata"],
+2:["Racconta il tuo segreto più piccante","Dai un bacio a {A}, se è d'accordo","Fai un balletto sensuale di 15 secondi per {A}","Lascia che {A} scriva un messaggio dal tuo telefono (lo approvi tu)","Manda un vocale sexy al contatto scelto da {A}","Recita con {A} una scena d'amore da film","Siediti sulle ginocchia di {A} per 1 minuto","Fai una confessione hot","Fai una proposta indecente a {A}","Dì chi del gruppo sceglieresti per una notte e chi mai","Racconta una barzelletta sporca: se nessuno ride, bevi due sorsi","Fai il verso di un gemito per 5 secondi","Mostra la tua cronologia di ricerca o bevi tre sorsi","Fai un brindisi al tuo ex con dedica sporca"],
+3:["Togli un indumento","Racconta la tua peggior figuraccia a letto","Racconta la cosa più sporca che hai fatto","{A} ti dà un soprannome osceno che vale per tutta la serata","Confessa il tuo difetto più sconcio","Fai 15 secondi da conduttore di un film porno anni '80","Togli due indumenti o bevi tre sorsi","Leggi ad alta voce l'ultimo messaggio piccante che hai mandato","Fai 10 secondi di dirty talk a {A}, se è d'accordo, altrimenti al muro","Mostra l'ultima foto nella cartella «eliminati di recente»","Dì il tuo numero di partner, quello vero","Il gruppo decide un messaggio da mandare al tuo ex: o lo mandi o bevi tre sorsi"]
+};
+/* Livelli di piccantezza: quali livelli di carte entrano nel mazzo */
+const SPICE={1:{e:"🌶️",t:"Soft",d:"Flirt, figuracce e risate",lv:[1]},2:{e:"🌶️🌶️",t:"Hot",d:"Allusioni, baci e confessioni",lv:[1,2]},3:{e:"🌶️🌶️🌶️",t:"Estremo",d:"Senza filtri, solo per stomaci forti",lv:[2,3]}};
+/* Tipi di carte che i giocatori possono scrivere */
+const CUSTOM_T={obb:{e:"🔥",t:"Obbligo"},ver:{e:"💬",t:"Verità"},prob:{e:"👆",t:"Più probabile"},mai:{e:"🙊",t:"Non ho mai"},pen:{e:"💣",t:"Penitenza"}};
+/* Premi di fine serata: k = statistica, d = descrizione del valore */
+const AWARDS=[
+ {k:"drinks",e:"🍺",t:"Spugna della serata",d:n=>n+(n==1?" sorso":" sorsi")},
+ {k:"liar",e:"🎭",t:"Bugiardo professionista",d:n=>n+(n==1?" vittoria":" vittorie")+" da impostore"},
+ {k:"caught",e:"🚨",t:"Pessimo bugiardo",d:n=>"beccato "+n+(n==1?" volta":" volte")+" da impostore"},
+ {k:"brave",e:"🦁",t:"Senza vergogna",d:n=>n+(n==1?" obbligo fatto":" obblighi fatti")},
+ {k:"honest",e:"😇",t:"Il confessore",d:n=>n+(n==1?" verità detta":" verità dette")},
+ {k:"ref",e:"🐔",t:"Il coniglio",d:n=>n+(n==1?" rifiuto":" rifiuti")},
+ {k:"victim",e:"🎯",t:"Preferito della ruota",d:n=>"scelto "+n+(n==1?" volta":" volte")},
+ {k:"boom",e:"💥",t:"Calamita per bombe",d:n=>n+(n==1?" esplosione":" esplosioni")+" in mano"},
+ {k:"sus",e:"👆",t:"Sempre nel mirino",d:n=>"indicato "+n+(n==1?" volta":" volte")},
+ {k:"lived",e:"🙊",t:"Ha già fatto tutto",d:n=>n+" «non ho mai» bevuti"}
+];
+/* Modalità Serata: giochi che si alternano. q = turni prima di cambiare, w = peso nell'estrazione, u = unità */
+const SER_GAMES=[
+ {k:"ruota",q:2,w:3,u:"vittime"},{k:"odv",q:4,w:3,u:"turni"},{k:"prob",q:4,w:3,u:"carte"},
+ {k:"mai",q:4,w:3,u:"carte"},{k:"pat",q:1,w:2,u:"esplosione"},{k:"imp",q:1,w:1.5,u:"partita"}
+];
+
+/* Elenco dei giochi mostrato nel menu */
+const GAMES=[
+{k:"imp",e:"🕵️",t:"L'Impostore",d:"Tutti sanno la parola segreta tranne uno. Con le modalità Infiltrato e Paranoia nessuno si fida più di nessuno.",p:"3-12 giocatori · 10 minuti",min:3,go:"Inizia: distribuisci le parole"},
+{k:"odv",e:"😈",t:"Obbligo o Verità",d:"Sfide e confessioni con i vostri nomi dentro. Occhio ai Jolly: rimbalzi, coppie e leggi.",p:"2-12 giocatori · quanto volete",min:2,go:"Inizia il primo turno"},
+{k:"ruota",e:"🎡",t:"Ruota del peccato",d:"La prima ruota sceglie la vittima, la seconda decide il suo destino.",p:"2-12 giocatori · a giri",min:2,go:"Gira la prima ruota"},
+{k:"prob",e:"👆",t:"Il più probabile",d:"Puntate il dito tutti insieme. A sorpresa arrivano i Duelli uno contro uno.",p:"3+ giocatori · veloce",min:3,go:"Prima carta"},
+{k:"mai",e:"🙊",t:"Non ho mai",d:"Chi l'ha fatto beve. Ogni 6 carte scatta l'Interrogatorio.",p:"3+ giocatori · veloce",min:3,go:"Prima carta"},
+{k:"pat",e:"💣",t:"Patata bollente",d:"Di' una parola a tema e passa il telefono prima che esploda.",p:"3-12 giocatori · round da 20 secondi",min:3,go:"Prepara la bomba"}
+];
+const GM={};GAMES.forEach(g=>GM[g.k]=g);
+
+/* Regole: short = passaggi brevi (emoji, testo), ex = esempio, full = regole complete, tip = consiglio */
+const RULES={
+imp:{short:[["🤫","Passatevi il telefono. Ognuno, da solo, tiene premuto e legge la <b>parola segreta</b>. Uno di voi non la vede: è l'<b>impostore</b>."],["💬","A turno ognuno dice <b>una parola o una frase</b> legata alla parola segreta, senza mai dirla. L'impostore deve bluffare."],["🗳️","Dopo uno o due giri contate 3-2-1 e <b>indicate</b> chi secondo voi è l'impostore."],["🏆","Lo beccate? Vincete voi, a meno che lui <b>indovini la parola</b>. Sbagliate? Vince lui."]],
+ ex:"Parola: <b>Manette</b>. Tu dici «polsi». Se sei troppo vago sembri tu l'impostore; se sei troppo preciso l'impostore capisce la parola.",
+ full:["<b>Classica</b>: l'impostore sa di esserlo. Vede solo il tema e, se attivo, un indizio vago.","<b>Infiltrato</b>: l'impostore riceve una parola simile (es. Manette e Corda) e non sa di essere l'impostore. Lo scopre solo alla fine.","<b>Paranoia</b>: in un round su cinque l'impostore non c'è. Se lo capite, votate «Nessuno».","Con 2 impostori dovete scoprirli tutti e due.","Chi perde beve: l'impostore scoperto beve due sorsi, se vince lui bevono gli innocenti.","Punti: vittoria del gruppo +1 a ogni innocente; vittoria dell'impostore +3 a lui."],
+ tip:"Date indizi che capisce solo chi sa la parola. Se sei l'impostore, ascolta i primi e resta sul vago."},
+odv:{short:[["👤","L'app vi dice <b>a chi tocca</b>."],["🎯","Quel giocatore sceglie <b>Obbligo</b> (una sfida da fare subito) o <b>Verità</b> (una domanda a cui rispondere sinceramente)."],["🃏","A volte esce un <b>Jolly</b>: la carta rimbalza su un altro, va fatta in coppia o diventa una legge."],["🍺","Chi non se la sente <b>passa e beve</b> un sorso. Poi tocca al prossimo."]],
+ ex:"Tocca a Giulia, sceglie Verità: «Cosa trovi di attraente in Marco?». Esce il Jolly Specchio: dopo aver risposto, gira la domanda a chi vuole.",
+ full:["Le carte usano i vostri nomi: l'app sceglie a caso chi coinvolgere.","A ogni turno puoi cambiare carta una volta (se non è uscito un Jolly).","Le sfide che coinvolgono un'altra persona valgono solo se anche lei è d'accordo.","L'app conta i sorsi di chi passa: la classifica è nel menu."],
+ tip:"Si può bere anche acqua: il gioco funziona lo stesso."},
+ruota:{short:[["🎡","Toccate <b>Gira</b>: la prima ruota sceglie una <b>vittima</b> tra i giocatori."],["🎲","La vittima gira la seconda ruota: decide il suo <b>destino</b> (bere, verità, obbligo, bacio, leggi…)."],["✅","La vittima esegue. Chi si rifiuta beve due sorsi. Poi si gira per una nuova vittima."]],
+ ex:"La prima ruota sceglie Sara. La seconda dice 👑 Re della serata: tutti bevono tranne lei.",
+ full:["Le leggi inventate con 📜 valgono fino alla fine della serata.","🤐 Muto: chi parla prima del prossimo giro beve un sorso per ogni parola.","I sorsi di Bevi, Bevi doppio e Re vengono segnati da soli nella classifica."],
+ tip:"Passate il telefono alla vittima: è lei a girare la ruota del suo destino."},
+prob:{short:[["📢","Una persona (l'app dice chi) legge la domanda <b>ad alta voce</b>."],["👆","Contate <b>3, 2, 1</b> e puntate tutti il dito su chi secondo voi è il più probabile."],["⚔️","A volte esce un <b>Duello</b>: due giocatori uno contro l'altro, si vota solo tra loro."],["🍺","Chi riceve <b>più dita beve</b>. In caso di pareggio bevono tutti i pareggiati."]],
+ ex:"«Chi è il più probabile a scrivere all'ex alle 3 di notte?» 3, 2, 1… quattro dita su Marco: Marco beve.",
+ full:["Non si può indicare sé stessi.","Nei Duelli chi perde beve due sorsi.","Ogni 6 carte arriva una 💥 Carta doppia: si bevono due sorsi.","Toccate i nomi sotto la carta per tenere il conto dei sorsi (facoltativo)."],
+ tip:"Il bello è il perché: chiedete sempre a qualcuno di spiegare il suo voto."},
+mai:{short:[["📢","Una persona legge la frase ad alta voce: «Non ho mai…»."],["🍺","Chi <b>l'ha fatto davvero</b> beve un sorso. Chi non l'ha mai fatto non beve."],["🎤","Ogni 6 carte scatta l'<b>Interrogatorio</b>: chi beve risponde a 3 domande del gruppo."]],
+ ex:"«Non ho mai scritto a un ex da ubriaco.» Se ti è successo, bevi.",
+ full:["Vale anche per chi legge.","Se menti e qualcuno lo sa, bevi doppio.","Toccate i nomi di chi beve per tenere il conto (facoltativo)."],
+ tip:"Funziona meglio se chi beve racconta almeno un dettaglio."},
+pat:{short:[["⭕","Mettetevi <b>in cerchio</b> nell'ordine dei nomi. Il telefono è una bomba con un timer segreto."],["🗣️","Sullo schermo c'è una <b>categoria</b>. Chi ha il telefono dice una parola a tema, tocca il pulsante e lo <b>passa al vicino</b>."],["💥","Tra 10 e 25 secondi la bomba <b>esplode</b>. Chi la tiene in mano pesca una penitenza."]],
+ ex:"Categoria «Una scusa per non farlo»: «mal di testa», passa; «domani lavoro», passa; «ehm…» BOOM.",
+ full:["Si passa sempre nello stesso senso.","Parola ripetuta, fuori tema o silenzio? Paga pegno anche chi l'ha detta.","Il ticchettio accelera, ma non dice quando esplode.","Rifiutare la penitenza costa due sorsi.","Potete togliere le categorie per giocare alla versione classica."],
+ tip:"Alzate il volume per sentire il ticchettio."}
+};
+
+</script>
+<script>
+/* =====================================================================
+   Party 18+ — NUCLEO
+   Stato e salvataggio, utilità, audio e vibrazione, componenti UI
+   (schermate, pannelli, avvisi, classifiche), menu e pagina di ogni gioco.
+   ===================================================================== */
+
+const app=document.getElementById('app');
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function shuf(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+/* ---------- Stato persistente (localStorage, chiave p18_S) ---------- */
+const store={
+  get(k,d){try{const v=localStorage.getItem('p18_'+k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem('p18_'+k,JSON.stringify(v))}catch(e){}}
+};
+let S=Object.assign({
+  players:[],        // nomi dei giocatori, condivisi da tutti i giochi
+  imp:1,time:4,      // Impostore: numero di impostori, minuti di discussione
+  cats:Object.keys(CATS),showCat:true,showClue:true,
+  mode:'classic',    // 'classic' | 'inf' (Infiltrato)
+  paranoia:false,    // a volte nessun impostore
+  patCat:true,       // Patata bollente con categorie
+  spice:2,           // livello di piccantezza: 1 Soft, 2 Hot, 3 Estremo
+  custom:[],         // carte scritte dai giocatori: [{t:'obb'|'ver'|'prob'|'mai'|'pen', x:'testo'}]
+  sound:true,ok:false,
+  pts:{},drinks:{},  // classifica punti Impostore e conteggio sorsi
+  st:{},             // statistiche per i premi di fine serata: {chiave:{nome:valore}}
+  night:null         // dati della serata in corso: {start, stages}
+},store.get('S',{}));
+S.cats=(S.cats||[]).filter(c=>CATS[c]);if(!S.cats.length)S.cats=Object.keys(CATS);
+if(!SPICE[S.spice])S.spice=2;
+function save(){store.set('S',S)}
+function stat(k,n,x){(S.st[k]=S.st[k]||{})[n]=(S.st[k][n]||0)+(x||1);save()}
+
+/* ---------- Stato della partita in corso ---------- */
+let G=null,        // dati del round corrente (diversi per ogni gioco)
+    CUR=null,      // gioco aperto
+    INGAME=false,  // true se c'è un round in corso (il tasto indietro chiede conferma)
+    TI=null,TB=null,TK=null, // timer: intervallo, timeout, ticchettio
+    DK={};         // mazzi mescolati: le carte non si ripetono finché il mazzo non finisce
+function draw(k,arr){if(!DK[k]||!DK[k].length)DK[k]=shuf(arr);return DK[k].pop()}
+/* Pesca da un mazzo di carte (obb, ver, prob, mai, pen) secondo il livello scelto, più le carte scritte dai giocatori */
+const CT={obb:OBB,ver:VER,prob:PROB,mai:MAI,pen:PEN},DKK={};
+function cardPool(k){return SPICE[S.spice].lv.flatMap(l=>CT[k][l]).concat(S.custom.filter(c=>c.t==k).map(c=>c.x))}
+function drawC(k){const key=k+'_'+S.spice;DKK[k]=key;return draw(key,cardPool(k))}
+function deckEmpty(k){const key=DKK[k];return !DK[key]||!DK[key].length}
+function stopAll(){clearInterval(TI);clearTimeout(TB);clearTimeout(TK)}
+
+/* ---------- Nomi nelle carte: {A} e {B} ---------- */
+function pickOthers(ex){
+  let c=G.names.map((_,i)=>i).filter(i=>!ex.includes(i));
+  if(!c.length)c=G.names.map((_,i)=>i).filter(i=>i!==ex[0]);
+  if(!c.length)c=[0];
+  return shuf(c);
+}
+function fillH(t,ex,fixA){
+  ex=[].concat(ex==null?[]:ex);const o=pickOthers(ex);
+  const a=fixA!=null?fixA:o[0],b=o.find(i=>i!==a),B=b!=null?b:a;
+  const nm=i=>`<b class="nm">${esc(G.names[i])}</b>`;
+  return esc(t).replace(/\{A\}/g,nm(a)).replace(/\{B\}/g,nm(B));
+}
+
+/* ---------- Vibrazione, schermo acceso, audio sintetizzato ---------- */
+function vib(p){try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}}
+function wake(){try{navigator.wakeLock&&navigator.wakeLock.request('screen').catch(()=>{})}catch(e){}}
+let AC=null;
+function ac(){if(!S.sound)return null;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();return AC}catch(e){return null}}
+function beep(f,d,v,type){const a=ac();if(!a)return;try{const o=a.createOscillator(),g=a.createGain(),t=a.currentTime;o.type=type||'square';o.frequency.value=f;g.gain.setValueAtTime(v||.12,t);g.gain.exponentialRampToValueAtTime(.0001,t+(d||.06));o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+(d||.06)+.02)}catch(e){}}
+function tune(fs){fs.forEach((f,i)=>setTimeout(()=>beep(f,.16,.12,'triangle'),i*130))}
+function boom(){const a=ac();if(!a)return;try{const len=a.sampleRate*.9,b=a.createBuffer(1,len,a.sampleRate),d=b.getChannelData(0);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2);const s=a.createBufferSource(),g=a.createGain(),f=a.createBiquadFilter();f.type='lowpass';f.frequency.value=800;g.gain.value=1;s.buffer=b;s.connect(f);f.connect(g);g.connect(a.destination);s.start()}catch(e){}}
+
+/* ---------- Coriandoli per le vittorie ---------- */
+function confetti(){
+  try{
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    const c=document.createElement('canvas'),x=c.getContext&&c.getContext('2d');if(!x)return;
+    const d=window.devicePixelRatio||1,W=innerWidth,H=innerHeight;c.className='confetti';c.width=W*d;c.height=H*d;document.body.appendChild(c);x.scale(d,d);
+    const cols=['#ff3d68','#ffc933','#4ff0a8','#7b4dff','#ff7a45'];
+    const P=Array.from({length:140},()=>({x:W/2,y:H*.35,vx:(Math.random()-.5)*13,vy:-Math.random()*13-4,r:Math.random()*360,s:Math.random()*6+5,c:pick(cols)}));
+    let f=0;(function loop(){x.clearRect(0,0,W,H);P.forEach(p=>{p.vy+=.35;p.x+=p.vx;p.y+=p.vy;p.r+=9;x.save();x.translate(p.x,p.y);x.rotate(p.r*Math.PI/180);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);x.restore()});if(++f<160)requestAnimationFrame(loop);else c.remove()})();
+  }catch(e){}
+}
+
+/* ---------- Componenti UI ---------- */
+function hue(s){let h=0;for(const c of s)h=(h*31+c.codePointAt(0))%360;return h}
+function av(n,cls){return `<div class="av ${cls||''}" style="--h:${hue(n)}">${esc([...n][0].toUpperCase())}</div>`}
+function drink(n,x){S.drinks[n]=(S.drinks[n]||0)+(x||1);save()}
+function toast(m){document.querySelectorAll('.toast').forEach(t=>t.remove());const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.classList.add('out'),2300);setTimeout(()=>t.remove(),2700)}
+
+/* Disegna una schermata: top = {title, help}, body = contenuto, foot = pulsanti fissi in basso, keep = mantieni lo scroll */
+function screen(o){
+  const t=o.top,y=window.scrollY;
+  const top=t?`<header class="top"><button class="ib" onclick="leave()" aria-label="Indietro">‹</button><div class="tt">${t.title||''}</div>${t.help?`<button class="ib" onclick="help('${t.help}')" aria-label="Regole">?</button>`:'<span></span>'}</header>`:'';
+  const bar=(t&&!o.nobar&&SER&&SER.k)?serBar():'';
+  app.innerHTML=top+`<main class="${t?'':'notop'}">${bar}${o.body}</main>`+(o.foot?`<footer class="foot">${o.foot}</footer>`:'');
+  if(o.keep)window.scrollTo(0,y);else{window.scrollTo(0,0);app.classList.remove('anim');void app.offsetWidth;app.classList.add('anim')}
+}
+function sheet(html){const d=document.createElement('div');d.className='sheet';d.innerHTML=`<div class="sbox">${html}</div>`;d.addEventListener('click',e=>{if(e.target===d)d.remove()});document.body.appendChild(d);return d}
+function closeSheets(){document.querySelectorAll('.sheet').forEach(x=>x.remove())}
+function leave(){
+  if(SER){serPause();return}
+  if(INGAME){
+    const d=sheet(`<h2>Uscire dalla partita?</h2><p class="muted center">Il round in corso andrà perso.</p><button class="btn" id="sok">Sì, esci</button><button class="btn sec" id="sno">Continua a giocare</button>`);
+    d.querySelector('#sok').onclick=()=>{d.remove();stopAll();INGAME=false;openG(CUR)};
+    d.querySelector('#sno').onclick=()=>d.remove();return;
+  }
+  home();
+}
+function help(k){sheet(howTo(k,true)+`<button class="btn" onclick="closeSheets()">Ho capito</button>`)}
+function howTo(k,inSheet){const r=RULES[k],g=GM[k];
+  return `<section class="card">${inSheet?`<div class="center"><div class="logo sm">${g.e}</div><h2>${g.t}</h2><p class="muted">${g.p}</p></div>`:''}
+  <h3 class="cap">Come si gioca</h3><ol class="how">${r.short.map(([e,t])=>`<li><span class="n">${e}</span><p>${t}</p></li>`).join('')}</ol>
+  ${r.ex?`<div class="ex"><b>Esempio</b><p>${r.ex}</p></div>`:''}
+  <details><summary>Regole complete e consigli</summary><ul class="full">${r.full.map(x=>`<li>${x}</li>`).join('')}</ul><p class="tip">💡 ${r.tip}</p></details></section>`}
+function board(o,u,g){g=g||{};const e=Object.entries(o).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]);if(!e.length)return '<p class="muted">Ancora niente.</p>';
+  return `<ol class="board">${e.map(([n,v],i)=>`<li><i>${i==0?'👑':i+1}</i><span>${esc(n)}${g[n]?`<em>+${g[n]}</em>`:''}</span><b>${v} ${u}</b></li>`).join('')}</ol>`}
+function sw(k,l,re){return `<label class="sw"><span>${l}</span><input type="checkbox" ${S[k]?'checked':''} onchange="S['${k}']=this.checked;save();${re||''}"><i></i></label>`}
+
+/* ---------- Ingresso e menu ---------- */
+function gate(){
+  screen({body:`<div class="center gate"><div class="logo xl">🔞</div><h1>Party <span>18+</span></h1><p class="sub">6 giochi da festa per adulti, con un solo telefono che passa di mano in mano.</p></div>
+  <section class="card"><p style="margin:0;font-size:16.5px">⚠️ Contiene <b>volgarità, umorismo nero e argomenti sessuali</b>. Solo per maggiorenni che non si offendono facilmente.</p></section>`,
+  foot:`<button class="btn big" onclick="S.ok=true;save();home()">Ho 18 anni o più, entra</button>`});
+}
+function home(keep){
+  stopAll();CUR=null;INGAME=false;SER=null;closeSheets();
+  const P=S.players,hasSt=Object.values(S.drinks).some(v=>v>0)||Object.keys(S.st).length>0,nc=S.custom.length;
+  screen({keep,body:`<div class="hero"><div class="logo">🔞</div><h1>Party <span>18+</span></h1><p class="sub">Giochi da festa con un solo telefono</p></div>
+  <section class="card">
+    <div class="ch"><h2>👥 Chi gioca?</h2><span class="pill">${P.length} ${P.length==1?'giocatore':'giocatori'}</span></div>
+    <p class="muted" style="margin:0 0 12px">Scrivete i nomi una volta: valgono per tutti i giochi e finiscono dentro le carte.</p>
+    ${P.length?`<div class="chips">${P.map((n,i)=>`<span class="pchip">${esc(n)}<button aria-label="Rimuovi" onclick="rmP(${i})">✕</button></span>`).join('')}</div>`:''}
+    <form class="add" onsubmit="addP(event)"><input id="pn" type="text" maxlength="16" placeholder="Scrivi un nome e premi +" autocomplete="off" enterkeyhint="done"><button class="addb" aria-label="Aggiungi">+</button></form>
+    ${P.length?'':'<button class="link" onclick="quickP()">Niente nomi: usa 4 giocatori anonimi</button>'}
+  </section>
+  <section class="card"><h2 style="margin-bottom:10px">Quanto piccante?</h2>
+    <div class="spice">${[1,2,3].map(l=>`<button class="${S.spice==l?'on':''}" onclick="setSpice(${l})"><b>${SPICE[l].e}</b><span>${SPICE[l].t}</span><small>${SPICE[l].d}</small></button>`).join('')}</div>
+    <button class="link sm" style="margin-top:10px" onclick="cardsPage()">✍️ Le vostre carte${nc?' ('+nc+')':''}: scrivete sfide e domande su misura</button>
+  </section>
+  <button class="game serata" onclick="serIntro()"><b>🎉</b><div><h3>Modalità Serata</h3><p>Premete un tasto e basta: i giochi si alternano da soli e a fine serata arrivano i premi.</p></div><i>›</i></button>
+  <h2 class="sect">Oppure scegli un gioco</h2>
+  <div class="menu">${GAMES.map(g=>`<button class="game" onclick="openG('${g.k}')"><b>${g.e}</b><div><h3>${g.t}</h3><p>${g.d}</p><small>${g.p}</small></div><i>›</i></button>`).join('')}</div>
+  ${hasSt?`<h2 class="sect">Questa serata</h2><section class="card"><div class="ch"><h2>🍺 Chi ha bevuto di più</h2></div>${board(S.drinks,'🍺')}<button class="btn gold" style="margin-top:12px" onclick="awardsPage()">🏆 Vedi i premi della serata</button></section>`:''}
+  <button class="link" onclick="S.sound=!S.sound;save();home(1)">${S.sound?'🔊 Suoni attivi (tocca per spegnere)':'🔇 Suoni spenti (tocca per accendere)'}</button>`});
+}
+function setSpice(l){S.spice=l;save();home(1);toast(SPICE[l].e+' Livello '+SPICE[l].t)}
+function addP(e){e.preventDefault();const v=$('#pn').value.trim().slice(0,16);if(!v)return;
+  if(S.players.length>=12)return toast('Massimo 12 giocatori');
+  if(S.players.some(p=>p.toLowerCase()==v.toLowerCase()))return toast('Questo nome c\'è già');
+  S.players.push(v);save();home(1);const n=$('#pn');n&&n.focus()}
+function rmP(i){S.players.splice(i,1);save();home(1)}
+function quickP(){S.players=['Giocatore 1','Giocatore 2','Giocatore 3','Giocatore 4'];save();home(1)}
+
+/* ---------- Pagina di ogni gioco: regole, impostazioni, avvio ---------- */
+function openG(k,keep){
+  stopAll();CUR=k;INGAME=false;closeSheets();
+  const g=GM[k],n=S.players.length,ok=n>=g.min;
+  screen({keep,top:{title:''},body:`<div class="hero sm"><div class="logo">${g.e}</div><h1>${g.t}</h1><p class="sub">${g.p}</p></div>
+  ${howTo(k)}
+  ${k=='imp'?impSettings():''}
+  ${k=='pat'?`<section class="card"><h3 class="cap">Impostazioni</h3>${sw('patCat','🗣️ Con categorie: prima di passare devi dire una parola a tema')}</section>`:''}
+  <section class="card"><div class="ch"><h2>👥 Giocatori (${n})</h2><button class="link sm" onclick="home()">Modifica</button></div><p class="muted" style="margin:0">${n?S.players.map(esc).join(' · '):'Nessuno: aggiungili dal menu.'}</p></section>
+  ${k=='imp'&&Object.keys(S.pts).length?`<section class="card"><div class="ch"><h2>🏆 Classifica</h2><button class="link sm" onclick="S.pts={};save();openG('imp',1)">Azzera</button></div>${board(S.pts,'pt')}</section>`:''}`,
+  foot:ok?`<button class="btn big" onclick="startG('${k}')">${g.go}</button>`:`<p class="warn">Servono almeno ${g.min} giocatori (ora ${n}).</p><button class="btn" onclick="home()">Aggiungi i giocatori</button>`});
+}
+function startG(k){INGAME=true;wake();ac();({imp:impStart,odv:odvStart,ruota:ruotaStart,prob:()=>deckStart('prob'),mai:()=>deckStart('mai'),pat:patStart})[k]()}
+
+</script>
+<script>
+/* =====================================================================
+   Party 18+ — L'IMPOSTORE
+   Flusso: impSettings → impStart → (impPass → impReveal) × giocatori
+           → impReady → impTalk/talkView → impVote → impCheck → impEnd
+   Modalità: Classica (l'impostore sa di esserlo) e Infiltrato (riceve
+   una parola gemella e non lo sa). Paranoia: 1 round su 5 senza impostore.
+   ===================================================================== */
+
+function maxImp(){return Math.max(1,Math.min(3,Math.floor((S.players.length-1)/3)))}
+function stepRow(e,l,v,k,note){return `<div class="srow"><div><span>${e} ${l}</span>${note?`<small>${note}</small>`:''}</div><div class="stepper"><button onclick="stp('${k}',-1)" aria-label="Meno">−</button><b>${v}</b><button onclick="stp('${k}',1)" aria-label="Più">+</button></div></div>`}
+function impSettings(){
+  const mi=maxImp(),inf=S.mode=='inf';if(S.imp>mi)S.imp=mi;
+  return `<section class="card"><h3 class="cap">Modalità</h3>
+  <div class="seg"><button class="${inf?'':'on'}" onclick="setMode('classic')"><b>🕵️ Classica</b><small>L'impostore sa di esserlo e non vede la parola</small></button>
+  <button class="${inf?'on':''}" onclick="setMode('inf')"><b>🎭 Infiltrato</b><small>Riceve una parola simile e non sa di essere l'impostore</small></button></div>
+  ${sw('paranoia',"😱 Paranoia: in un round su cinque l'impostore non c'è")}</section>
+  <section class="card"><h3 class="cap">Impostazioni</h3>
+  ${stepRow('🎭','Impostori',S.imp,'imp',mi>1?'Massimo '+mi+' con '+S.players.length+' giocatori':'Con 7 o più giocatori puoi metterne 2')}
+  ${stepRow('⏱️','Tempo per gli indizi',S.time+' min','time')}
+  <h4 class="lab">Temi delle parole <small>(tocca per attivare)</small></h4>
+  <div class="cats">${Object.keys(CATS).map((c,i)=>`<button class="cat ${S.cats.includes(c)?'on':''}" onclick="tCat(${i})"><b>${CATS[c].e}</b>${c}</button>`).join('')}</div>
+  ${inf?'':`<h4 class="lab">Aiuti per l'impostore</h4>${sw('showCat','Vede il tema della parola')}${sw('showClue','Riceve un indizio vago')}`}</section>`;
+}
+function setMode(m){S.mode=m;save();openG('imp',1)}
+function stp(k,d){if(k=='imp')S.imp=Math.max(1,Math.min(maxImp(),S.imp+d));else S.time=Math.max(1,Math.min(10,S.time+d));save();openG('imp',1)}
+function tCat(i){const c=Object.keys(CATS)[i],j=S.cats.indexOf(c);if(j>=0){if(S.cats.length==1)return toast('Lascia attivo almeno un tema');S.cats.splice(j,1)}else S.cats.push(c);save();openG('imp',1)}
+function phase(i){return `<div class="phase">${['Parola','Indizi','Voto','Verdetto'].map((p,k)=>`<span class="${k==i?'on':k<i?'done':''}">${k<i?'✓ ':''}${p}</span>`).join('')}</div>`}
+const impTop=()=>({title:"L'Impostore",help:'imp'});
+
+function impStart(){
+  const names=S.players.slice(),n=names.length,cat=pick(S.cats),exp=Math.min(S.imp,maxImp());
+  const ni=(S.paranoia&&Math.random()<.2)?0:exp;
+  const word=draw('w_'+cat,Object.keys(CATS[cat].w)),[clue,twin]=CATS[cat].w[word];
+  G={names,cat,word,clue,twin,inf:S.mode=='inf',ni,exp,imps:new Set(shuf([...Array(n).keys()]).slice(0,ni)),i:0};
+  impPass();
+}
+function impPass(){
+  const nm=G.names[G.i];
+  screen({top:impTop(),body:`${phase(0)}<div class="center">
+   <p class="kicker">Giocatore ${G.i+1} di ${G.names.length}</p>
+   <div class="dots">${G.names.map((_,k)=>`<i class="${k<G.i?'done':k==G.i?'on':''}"></i>`).join('')}</div>
+   <p class="muted" style="margin-top:24px">Passa il telefono a</p>${av(nm,'xl')}<div class="name">${esc(nm)}</div>
+   <p class="muted">Gli altri non devono guardare lo schermo.</p></div>`,
+   foot:`<button class="btn big" onclick="impReveal()">Sono ${esc(nm)}, fammi vedere</button>`});
+}
+function impReveal(){
+  const nm=G.names[G.i],imp=G.imps.has(G.i),last=G.i==G.names.length-1;
+  /* In Infiltrato la scheda dell'impostore è identica alle altre: cambia solo la parola */
+  const wordFace=w=>`<div class="face secret"><p class="hint" style="margin:0">${G.inf?'La tua parola è':'La parola segreta è'}</p><div class="word">${esc(w)}</div><p class="hint">${CATS[G.cat].e} ${G.cat}</p><p class="note">${G.inf?'Qualcuno ha una parola diversa, forse proprio tu. Resta sul vago.':'Non dirla mai. Dai indizi vaghi: l\'impostore ti ascolta.'}</p></div>`;
+  const impFace=`<div class="face secret bad"><div class="emoji">🤫</div><div class="imp">Sei l'impostore</div>
+    ${S.showCat?`<p class="hint">Tema: ${CATS[G.cat].e} ${G.cat}</p>`:''}
+    ${S.showClue?`<div class="clue"><small>Indizio</small>${esc(G.clue)}</div>`:''}
+    <p class="note">Non conosci la parola. Ascolta gli altri e bluffa.${G.ni>1?' C\'è anche un altro impostore.':''}</p></div>`;
+  const sec=imp?(G.inf?wordFace(G.twin):impFace):wordFace(G.word);
+  screen({top:impTop(),body:`${phase(0)}<p class="center kicker">${esc(nm)}</p>
+   <div class="hold" id="hb">${sec}<div class="face cover"><div class="fing">👆</div><b>Tieni premuto qui</b><span>La parola si vede solo finché tieni il dito sullo schermo</span></div></div>
+   <p class="center muted" id="hm">Quando hai letto, togli il dito.</p>`,
+   foot:`<button class="btn" id="nx" disabled onclick="impNext()">${last?'Ho visto ✓ Siamo tutti pronti':'Ho visto ✓ Passa al prossimo'}</button>`});
+  const hb=$('#hb');let seen=false;
+  const on=e=>{e.preventDefault();hb.classList.add('show');if(!seen)vib(25);seen=true};
+  const off=()=>{hb.classList.remove('show');if(seen){$('#nx').disabled=false;$('#hm').textContent='Fatto. Ora tocca il pulsante qui sotto.'}};
+  hb.addEventListener('pointerdown',on);['pointerup','pointercancel','pointerleave'].forEach(t=>hb.addEventListener(t,off));
+  hb.addEventListener('touchstart',e=>e.preventDefault(),{passive:false});
+  hb.addEventListener('contextmenu',e=>e.preventDefault());
+}
+function impNext(){G.i++;G.i>=G.names.length?impReady():impPass()}
+function impReady(){
+  screen({top:impTop(),body:`${phase(1)}<div class="center"><div class="logo">✅</div><h1>Tutti pronti</h1><p class="sub">Mettete il telefono al centro, dove tutti lo vedono.</p></div>
+  <section class="card"><h3 class="cap">Cosa succede adesso</h3><ol class="how">
+   <li><span class="n">1</span><p>L'app dice <b>chi parla</b>. Quella persona dice una parola o una frase sulla ${G.inf?'sua parola':'parola segreta'}.</p></li>
+   <li><span class="n">2</span><p>Poi tocca <b>Avanti</b> e parla il prossimo.</p></li>
+   <li><span class="n">3</span><p>Dopo 1 o 2 giri, o quando scade il tempo, <b>si vota</b>.</p></li></ol>
+   ${G.inf?'<div class="ex"><b>Modalità Infiltrato</b><p>Uno di voi ha una parola simile ma diversa, e non lo sa. Ascoltate bene chi stona.</p></div>':''}
+   ${S.paranoia?'<div class="ex"><b>Paranoia attiva</b><p>Forse questa volta l\'impostore non c\'è.</p></div>':''}</section>`,
+  foot:`<button class="btn big" onclick="impTalk()">Via agli indizi (${S.time} min)</button>`});
+}
+function fmt(t){return Math.floor(t/60)+':'+String(t%60).padStart(2,'0')}
+function updT(){const e=$('#tm');if(e){e.textContent=fmt(G.t);e.classList.toggle('low',G.t<=30)}}
+function impTalk(){
+  const n=G.names.length,s=Math.floor(Math.random()*n);
+  G.order=[...Array(n).keys()].map(k=>(s+k)%n);G.sp=0;G.round=1;G.t=S.time*60;G.run=true;
+  talkView();
+  TI=setInterval(()=>{if(!G.run)return;G.t--;updT();if(G.t<=10&&G.t>0)beep(1200,.05,.08);
+    if(G.t<=0){clearInterval(TI);beep(440,.5,.18,'sawtooth');vib([200,100,200]);impVote(true)}},1000);
+}
+function talkView(){
+  const L=G.order.length,cur=G.names[G.order[G.sp]],nx=G.names[G.order[(G.sp+1)%L]];
+  screen({top:impTop(),body:`${phase(1)}
+   <div class="tbar"><span class="pill">Giro ${G.round}</span><button class="timer-chip" onclick="tgl()" aria-label="Pausa"><span id="tm">${fmt(G.t)}</span><em id="te">${G.run?'⏸':'▶'}</em></button></div>
+   <div class="center">${av(cur,'xl')}<p class="muted" style="margin:0">Tocca a</p><div class="name">${esc(cur)}</div></div>
+   <div class="say">${G.inf?'Di\' <b>una parola o una frase</b> legata alla tua parola. Ascolta: qualcuno ne ha una diversa.':'Di\' <b>una parola o una frase</b> legata alla parola segreta. Non dirla!'}</div>
+   <p class="center muted">Dopo parla <b>${esc(nx)}</b></p>
+   <div class="order">${G.order.map((k,j)=>`<span class="${j==G.sp?'on':j<G.sp?'done':''}">${esc(G.names[k])}</span>`).join('')}</div>`,
+   foot:`<button class="btn big" onclick="talkNext()">Fatto, avanti →</button><button class="btn ${G.round>=2?'gold':'sec'}" onclick="impVote()">🗳️ Andiamo al voto</button>`});
+  updT();
+}
+function talkNext(){G.sp++;if(G.sp>=G.order.length){G.sp=0;G.round++;toast(G.round==2?'Primo giro finito: fatene un altro o votate':'Giro finito: è ora di votare')}talkView()}
+function tgl(){G.run=!G.run;const e=$('#te');if(e)e.textContent=G.run?'⏸':'▶';toast(G.run?'Timer ripartito':'Timer in pausa')}
+
+/* Il voto usa G.exp (il numero di impostori impostato), così la Paranoia non si tradisce */
+function impVote(to){
+  clearInterval(TI);G.sel=new Set();G.none=false;const k=G.exp,m=k>1;
+  screen({top:impTop(),body:`${phase(2)}<div class="center"><div class="logo">${to?'⏰':'🗳️'}</div><h1>${to?'Tempo scaduto!':'Chi è l\'impostore?'}</h1>
+   <p class="sub">Contate <b>3, 2, 1</b> e indicate tutti insieme ${m?'i '+k+' sospettati':'il sospettato'}. Poi toccate ${m?'i nomi più votati':'il nome più votato'}.</p></div>
+   <div class="vote">${G.names.map((n,i)=>`<button id="v${i}" onclick="vsel(${i})">${av(n,'sm')}<span>${esc(n)}</span></button>`).join('')}</div>
+   ${S.paranoia?'<button class="nobody" id="vnone" onclick="vnone()">🙅 Secondo noi non c\'è nessun impostore</button>':''}`,
+   foot:`<button class="btn big" id="vok" disabled onclick="impCheck()">Scegli ${m?k+' nomi':'un nome'}</button>`});
+}
+function vsel(i){
+  const k=G.exp;
+  if(G.none){G.none=false;$('#vnone').classList.remove('on')}
+  if(k==1&&!G.sel.has(i)){G.sel.clear();document.querySelectorAll('.vote button').forEach(b=>b.classList.remove('on'))}
+  if(G.sel.has(i))G.sel.delete(i);else{if(G.sel.size>=k)return toast('Hai già scelto '+k+' nomi: togline uno');G.sel.add(i)}
+  $('#v'+i).classList.toggle('on',G.sel.has(i));updVok();
+}
+function vnone(){G.none=!G.none;G.sel.clear();document.querySelectorAll('.vote button').forEach(b=>b.classList.remove('on'));$('#vnone').classList.toggle('on',G.none);updVok()}
+function updVok(){const b=$('#vok'),k=G.exp,ok=G.none||G.sel.size==k;b.disabled=!ok;
+  b.textContent=G.none?'Confermo: nessun impostore':ok?(k==1?'Confermo: è '+G.names[[...G.sel][0]]:'Confermo questi '+k+' nomi'):'Scegli '+(k>1?k+' nomi':'un nome')}
+function impCheck(){
+  const sel=[...G.sel];
+  if(G.ni==0)return impEnd(G.none?'none-ok':'none-bad',sel);
+  if(G.none)return impEnd('imp',[],false,true);
+  if(!sel.every(i=>G.imps.has(i)))return impEnd('imp',sel);
+  const nm=[...G.imps].map(i=>esc(G.names[i])).join(' e '),m=G.ni>1;
+  screen({top:impTop(),body:`${phase(3)}<div class="center"><div class="logo">🎯</div><h1>Preso!</h1><p class="sub">${nm} ${m?'erano gli impostori':'era l\'impostore'}.${G.inf?(m?' Non lo sapevano nemmeno loro.':' Non lo sapeva nemmeno lui.'):''}</p></div>
+   <section class="card center"><h3 class="cap">Ultima possibilità</h3><p class="big-p">${nm}, ${m?'dite':"di'"} ad alta voce quale ${m?'pensate':'pensi'} che sia la parola degli altri.</p><p class="muted">Gli altri giudicano se è giusta.</p></section>`,
+   foot:`<button class="btn big" onclick="impEnd('group')">❌ Sbagliata: vince il gruppo</button><button class="btn sec" onclick="impEnd('imp',null,true)">😈 Indovinata: vince ${m?'chi bluffava':'l\'impostore'}</button>`});
+}
+function impEnd(w,sel,guessed,votedNone){
+  INGAME=false;
+  const iN=[...G.imps].map(i=>G.names[i]),inn=G.names.filter((_,i)=>!G.imps.has(i)),m=iN.length>1,gain={};let pay=[];
+  const acc=(sel||[]).filter(i=>!G.imps.has(i)).map(i=>esc(G.names[i]));
+  let title,why,good;
+  if(w=='group'){good=true;title='Vince il gruppo!';why=m?'Scoperti e non hanno indovinato la parola.':'Scoperto e non ha indovinato la parola.';inn.forEach(n=>gain[n]=1);pay=iN.map(n=>[n,2])}
+  else if(w=='imp'){good=false;title=m?'Vincono gli impostori!':'Vince l\'impostore!';
+    why=guessed?'Scoperto, ma ha indovinato la parola!':votedNone?'Avete detto che non c\'era nessun impostore… e invece c\'era.':`Avete votato ${acc.join(' e ')}: ${acc.length>1?'erano innocenti':'era innocente'}.`;
+    iN.forEach(n=>gain[n]=3);pay=inn.map(n=>[n,1])}
+  else if(w=='none-ok'){good=true;title='Nessun impostore!';why='Questa volta l\'impostore non esisteva e non vi siete fatti fregare dalla paranoia.';G.names.forEach(n=>gain[n]=1)}
+  else{good=false;title='Paranoia! 😱';why=`Non c'era nessun impostore e avete accusato ${acc.join(' e ')}. Bevono tutti.`;pay=G.names.map(n=>[n,1])}
+  for(const n in gain)S.pts[n]=(S.pts[n]||0)+gain[n];
+  if(w=='imp')iN.forEach(n=>stat('liar',n));if(w=='group')iN.forEach(n=>stat('caught',n));pay.forEach(([n,x])=>drink(n,x));save();
+  tune(good?[523,659,784,1047]:[392,311,262,196]);if(good)confetti();
+  screen({top:{title:"L'Impostore"},body:`${phase(3)}<div class="center"><div class="logo">${good?'🎉':'😈'}</div>
+   <h1 class="${good?'win':'lose'}">${title}</h1><p class="sub">${why}</p></div>
+   <section class="card center"><p class="cap">${G.inf?'La parola del gruppo era':'La parola era'}</p><div class="word">${esc(G.word)}</div>
+    ${G.inf&&G.ni?`<p class="muted">${m?'Gli infiltrati avevano':'L\'infiltrato aveva'}: <b>${esc(G.twin)}</b></p>`:''}
+    <p class="cap" style="margin-top:16px">${G.ni?(m?'Impostori':'Impostore'):'Impostore'}</p><div>${G.ni?iN.map(n=>`<span class="chip bad">${esc(n)}</span>`).join(''):'<span class="chip">Nessuno 👻</span>'}</div></section>
+   ${pay.length?`<section class="card"><h3 class="cap">🍺 Chi paga da bere</h3><p style="margin:0;font-size:17px">${pay.map(([n,x])=>`${esc(n)} ${x>1?'(×'+x+')':''}`).join(' · ')}</p></section>`:''}
+   <section class="card"><h3 class="cap">🏆 Classifica</h3>${board(S.pts,'pt',gain)}</section>`,
+   foot:SER?`<button class="btn big" onclick="serNext()">Prossima tappa →</button><button class="btn sec" onclick="INGAME=true;impStart()">Un'altra partita di Impostore</button>`
+     :`<button class="btn big" onclick="INGAME=true;impStart()">Nuova partita</button><button class="btn sec" onclick="openG('imp')">Cambia impostazioni</button>`});
+}
+
+</script>
+<script>
+/* =====================================================================
+   Party 18+ — OBBLIGO O VERITÀ
+   Flusso: odvStart → odvTurn (scelta) → odvCard (carta + eventuale Jolly)
+           → odvNext / odvPass
+   Le carte usano i nomi dei giocatori ({A}, {B}). Il 18% delle volte
+   esce un Jolly che cambia le regole del turno.
+   ===================================================================== */
+
+const odvTop=()=>({title:'Obbligo o Verità',help:'odv'});
+function odvStart(){G={names:S.players.slice(),i:0};odvTurn()}
+function odvTurn(){
+  G.swap=false;const n=G.names[G.i],nx=G.names[(G.i+1)%G.names.length];
+  screen({top:odvTop(),body:`<div class="center">${av(n,'xl')}<p class="muted" style="margin:0">Tocca a</p><div class="name">${esc(n)}</div><p class="sub" style="margin-bottom:10px">Scegli cosa pescare</p></div>
+   <div class="choice"><button class="ch-o" onclick="odvCard('o')"><b>🔥</b><span>Obbligo</span><small>Una sfida da fare subito</small></button><button class="ch-v" onclick="odvCard('v')"><b>💬</b><span>Verità</span><small>Una domanda a cui rispondere sinceramente</small></button></div>
+   <button class="link" onclick="odvCard(Math.random()<.5?'o':'v')">🎲 Non so scegliere: decida il destino</button>
+   <p class="center muted">Dopo tocca a <b>${esc(nx)}</b></p>`});
+}
+function odvCard(t,swp){
+  if(swp)G.swap=true;
+  const n=G.names[G.i],o=t=='o',j=(!swp&&Math.random()<.18)?pick(JOLLY):null;
+  const tA=pickOthers([G.i])[0];  // bersaglio del Jolly, escluso poi dalle carte
+  const cards=[];
+  if(!j||j.card){const k=j&&j.card==2?2:1;for(let x=0;x<k;x++)cards.push(drawC(o?'obb':'ver'))}
+  G.t=t;G.hasCard=cards.length>0;
+  screen({top:odvTop(),body:`<div class="center"><p class="kicker">${esc(n)}</p><span class="badge ${o?'bad':''}">${o?'🔥 Obbligo':'💬 Verità'}</span></div>
+   ${j?`<div class="jolly"><div class="je">${j.e}</div><b>Jolly: ${j.t}</b><p>${fillH(j.d,[G.i],tA)}</p></div>`:''}
+   ${cards.map(c=>`<div class="tcard ${o?'bad':''}"><p>${fillH(c,j?[G.i,tA]:[G.i])}</p></div>`).join('')}
+   ${cards.length?`<div class="say">${o?'<b>Fallo adesso.</b> Il gruppo decide se vale.':'<b>Rispondi sinceramente.</b> Se il gruppo pensa che menti, bevi.'}</div>`:''}
+   ${G.swap||j?'':`<button class="link" onclick="odvCard('${t}',1)">🔄 Cambia carta (una volta per turno)</button>`}`,
+   foot:`<button class="btn big" onclick="odvDone()">✅ Fatto, prossimo</button><button class="btn sec" onclick="odvPass()">🍺 Passo e bevo un sorso</button>`});
+  if(j){vib([40,40,40]);tune([660,880,1320])}
+}
+function odvDone(){if(G.hasCard)stat(G.t=='o'?'brave':'honest',G.names[G.i]);odvNext()}
+function odvPass(){const n=G.names[G.i];drink(n);stat('ref',n);toast('🍺 '+n+' beve un sorso');odvNext()}
+function odvNext(){G.i=(G.i+1)%G.names.length;if(serStep())return;odvTurn()}
+
+</script>
+<script>
+/* =====================================================================
+   Party 18+ — RUOTA DEL PECCATO
+   Flusso: ruotaStart → ruotaP (ruota 1: vittima) → ruotaSpinP
+           → ruotaA (ruota 2: destino) → ruotaSpinA → ruotaRes
+           → ruotaDone / ruotaRefuse → ruotaP
+   Le ruote sono SVG generati al volo; la rotazione è una transizione CSS.
+   ===================================================================== */
+
+const ruotaTop=()=>({title:'Ruota del peccato',help:'ruota'});
+
+/* items: [{l: etichetta, h: tinta, emoji: bool}]. Spicchio i = da i*seg a (i+1)*seg gradi, partendo dall'alto in senso orario */
+function wheelSVG(items,id){
+  const n=items.length,seg=360/n,R=100;let s='';
+  items.forEach((it,i)=>{
+    const a0=(i*seg-90)*Math.PI/180,a1=((i+1)*seg-90)*Math.PI/180;
+    s+=`<path d="M0 0L${(R*Math.cos(a0)).toFixed(2)} ${(R*Math.sin(a0)).toFixed(2)}A${R} ${R} 0 ${seg>180?1:0} 1 ${(R*Math.cos(a1)).toFixed(2)} ${(R*Math.sin(a1)).toFixed(2)}Z" fill="hsl(${it.h},72%,${i%2?46:56}%)" stroke="#100c1f" stroke-width="1.2"/>`;
+    const ang=(i+.5)*seg-90;
+    const fs=it.emoji?19:(n<=4?13:n<=6?11:n<=8?9.5:8);
+    const tr=it.emoji?`rotate(${ang.toFixed(1)}) translate(72 0) rotate(90)`:`rotate(${ang.toFixed(1)}) translate(60 0)`;
+    s+=`<text transform="${tr}" text-anchor="middle" dominant-baseline="central" font-size="${fs}" font-weight="700" fill="#fff" font-family="Fredoka,sans-serif">${esc(it.l)}</text>`;
+  });
+  return `<svg viewBox="-100 -100 200 200" class="wheel" id="${id}" style="transform:rotate(${G.rots[id]||0}deg)">${s}</svg>`;
+}
+/* Fa girare la ruota e la ferma al centro dello spicchio "target" (con un po' di casualità) */
+function spinWheel(id,n,target,done){
+  const el=document.getElementById(id),seg=360/n,cur=G.rots[id]||0;
+  const R=Math.ceil(cur/360)*360+360*5+(360-(target+.5)*seg)+(Math.random()-.5)*seg*.6;
+  G.rots[id]=R;el.style.transform=`rotate(${R}deg)`;
+  let iv=45,t=0;const tk=()=>{beep(1100,.02,.07);t+=iv;iv*=1.09;if(t<3900)TK=setTimeout(tk,iv)};tk();
+  TB=setTimeout(()=>{vib(30);done()},4300);
+}
+function wheelBox(svg,hub){return `<div class="wheel-wrap"><div class="pin"></div>${svg}<div class="hub">${hub}</div></div>`}
+
+function ruotaStart(){G={names:S.players.slice(),rots:{},round:0};ruotaP()}
+function ruotaP(){
+  stopAll();INGAME=true;G.round++;G.busy=false;
+  const items=G.names.map(n=>({l:n.length>10?n.slice(0,9)+'…':n,h:hue(n)}));
+  screen({top:ruotaTop(),body:`<div class="center"><p class="kicker">Giro ${G.round} · Ruota 1 di 2</p><h1>Chi è la <span>vittima</span>?</h1><p class="sub">Gira la ruota: sceglie a chi tocca.</p></div>
+   ${wheelBox(wheelSVG(items,'wp'),'😈')}<div id="res" class="center res"></div>`,
+   foot:`<button class="btn big" id="sp" onclick="ruotaSpinP()">🎡 Gira la ruota</button>`});
+}
+function ruotaSpinP(){
+  if(G.busy)return;G.busy=true;$('#sp').disabled=true;$('#res').innerHTML='<p class="muted">Gira, gira…</p>';
+  G.v=Math.floor(Math.random()*G.names.length);
+  spinWheel('wp',G.names.length,G.v,()=>{
+    const n=G.names[G.v];stat('victim',n);$('#res').innerHTML=`<p class="muted" style="margin:0">La vittima è</p><div class="name">${esc(n)}</div>`;
+    const b=$('#sp');b.disabled=false;b.textContent='Passa il telefono a '+n+' →';b.onclick=ruotaA;G.busy=false;tune([523,784]);
+  });
+}
+function ruotaA(){
+  const n=G.names[G.v];G.busy=false;
+  const items=WHEEL.map((a,i)=>({l:a.e,h:(i*30+330)%360,emoji:true}));
+  screen({top:ruotaTop(),body:`<div class="center"><p class="kicker">Giro ${G.round} · Ruota 2 di 2</p><h1>Il destino di <span>${esc(n)}</span></h1><p class="sub">${esc(n)}, gira la ruota e accetta quello che esce.</p></div>
+   ${wheelBox(wheelSVG(items,'wa'),'🎲')}<div id="res" class="center res"></div>`,
+   foot:`<button class="btn big" id="sp" onclick="ruotaSpinA()">🎲 Gira il destino</button>`});
+}
+function ruotaSpinA(){if(G.busy)return;G.busy=true;$('#sp').disabled=true;G.a=Math.floor(Math.random()*WHEEL.length);spinWheel('wa',WHEEL.length,G.a,ruotaRes)}
+function ruotaRes(){
+  const a=WHEEL[G.a],n=G.names[G.v];
+  const extra=a.card?`<div class="tcard ${a.card=='o'?'bad':''}"><p>${fillH(drawC(a.card=='o'?'obb':'ver'),[G.v])}</p></div>`:'';
+  screen({top:ruotaTop(),body:`<div class="center"><p class="kicker">${esc(n)}</p><div class="logo xl">${a.e}</div><h1>${a.t}</h1></div>
+   <div class="say">${fillH(a.d,[G.v])}</div>${extra}`,
+   foot:`<button class="btn big" onclick="ruotaDone()">✅ Fatto, nuova vittima</button>${a.noRefuse?'':'<button class="btn sec" onclick="ruotaRefuse()">🍺 Rifiuto e bevo due sorsi</button>'}`});
+  if(a.dr=='all'||a.t=='Salvo')confetti();
+}
+function ruotaDone(){
+  const a=WHEEL[G.a],n=G.names[G.v];
+  if(a.dr=='all'){G.names.forEach((m,i)=>{if(i!==G.v)drink(m)});toast('🍺 Tutti bevono tranne '+n)}
+  else if(a.dr){drink(n,a.dr);toast('🍺 Segnato a '+n)}
+  if(a.card)stat(a.card=='o'?'brave':'honest',n);
+  ruotaAfter();
+}
+function ruotaRefuse(){const n=G.names[G.v];drink(n,2);stat('ref',n);toast('🍺🍺 '+n+' beve due sorsi');ruotaAfter()}
+function ruotaAfter(){if(serStep())return;ruotaP()}
+
+</script>
+<script>
+/* =====================================================================
+   Party 18+ — MAZZI: IL PIÙ PROBABILE e NON HO MAI
+   Flusso: deckStart(k) → deckCard → dsel (chi beve) → deckNext
+   Sorprese: Duelli uno contro uno (solo Più probabile, 25% delle carte),
+   e ogni 6 carte una carta evento (Carta doppia / Interrogatorio).
+   ===================================================================== */
+
+const DECK={
+  prob:{act:'Contate <b>3, 2, 1</b> e puntate tutti il dito. Chi riceve più dita beve.'},
+  mai:{act:'Chi <b>l\'ha fatto davvero</b> beve. Gli altri no.'}
+};
+function deckStart(k){G={k,names:S.players.slice(),r:0,c:0};deckCard()}
+const dn=i=>`<div class="dn">${av(G.names[i])}<span>${esc(G.names[i])}</span></div>`;
+function deckCard(){
+  const d=DECK[G.k],rd=G.names[G.r%G.names.length];G.c++;G.sel=new Set();G.mult=1;
+  const special=G.c%6==0;let head='',text,act=d.act;
+  if(G.k=='prob'&&!special&&G.c>2&&Math.random()<.25){
+    const [a,b]=shuf([...G.names.keys()]);G.mult=2;text=draw('duel',DUEL);
+    head=`<div class="center"><span class="event">⚔️ Duello</span></div><div class="duel">${dn(a)}<span class="vs">VS</span>${dn(b)}</div>`;
+    act=`Si vota <b>solo tra ${esc(G.names[a])} e ${esc(G.names[b])}</b>: contate 3, 2, 1 e indicate. Chi prende più dita beve due sorsi.`;
+  }else{
+    text=drawC(G.k);
+    if(special){
+      G.mult=G.k=='prob'?2:1;
+      head=`<div class="center"><span class="event">${G.k=='prob'?'💥 Carta doppia':'🎤 Interrogatorio'}</span></div>`;
+      act+=G.k=='prob'?' <b>Questa volta i sorsi sono due.</b>':' <b>Chi beve risponde a 3 domande del gruppo.</b>';
+    }
+  }
+  screen({top:{title:GM[G.k].t,help:G.k},body:`<div class="tbar"><span class="pill">Carta ${G.c}</span><span class="pill ghost">📢 Legge ${esc(rd)}</span></div>
+   ${head}<div class="tcard"><p>${esc(text)}</p></div>
+   <div class="say">${act}</div>
+   <h4 class="lab">Chi beve? <small>tocca i nomi per segnarlo (facoltativo)</small></h4>
+   <div class="pick">${G.names.map((n,i)=>`<button id="d${i}" onclick="dsel(${i})">${esc(n)}</button>`).join('')}</div>`,
+   foot:`<button class="btn big" onclick="deckNext()">Prossima carta →</button>`});
+  if(head){vib([40,40,40]);tune([660,880])}
+}
+function dsel(i){G.sel.has(i)?G.sel.delete(i):G.sel.add(i);$('#d'+i).classList.toggle('on',G.sel.has(i))}
+function deckNext(){
+  G.sel.forEach(i=>{drink(G.names[i],G.mult);stat(G.k=='prob'?'sus':'lived',G.names[i])});G.r++;
+  if(serStep())return;
+  if(deckEmpty(G.k))toast('Mazzo finito: rimescolo le carte');else if(G.sel.size)toast('🍺 Sorsi segnati');
+  deckCard();
+}
+
+</script>
+<script>
+/* =====================================================================
+   Party 18+ — PATATA BOLLENTE
+   Flusso: patStart → patReady → patRun (ticchettio + timer segreto)
+           → patPass × n → patBoom → patReady / patRefuse
+   Con le categorie attive, chi ha il telefono deve dire una parola a
+   tema prima di passarlo.
+   ===================================================================== */
+
+const patTop=()=>({title:'Patata bollente',help:'pat'});
+function patStart(){G={names:S.players.slice(),h:0};patReady()}
+function patReady(){
+  stopAll();INGAME=true;const n=G.names[G.h],nx=G.names[(G.h+1)%G.names.length];
+  screen({top:patTop(),body:`<div class="center"><div class="logo">💣</div><h1>Pronti?</h1><p class="sub">Mettetevi in cerchio, nell'ordine dei nomi.</p></div>
+   <section class="card"><ol class="how">
+    <li><span class="n">1</span><p>Il telefono parte da <b>${esc(n)}</b>, poi va a ${esc(nx)}.</p></li>
+    <li><span class="n">2</span><p>${S.patCat?'Di\' a voce una <b>parola della categoria</b>, tocca il pulsante giallo e passa il telefono.':'Tocca il <b>pulsante giallo</b> e passa subito il telefono.'}</p></li>
+    <li><span class="n">3</span><p>Quando esplode, chi lo tiene <b>paga pegno</b>.</p></li></ol>
+    ${sw('patCat','🗣️ Con categorie','patReady()')}</section>
+   <p class="center muted">${S.sound?'🔊 Alzate il volume per sentire il ticchettio':'🔇 Suoni spenti: si gioca solo a vista'}</p>`,
+   foot:`<button class="btn big" onclick="patRun()">🔥 Accendi la miccia</button>`});
+}
+function patRun(){
+  ac();G.st=Date.now();G.last=0;G.passes=0;G.cat=S.patCat?draw('pcat',PAT_CAT):null;
+  const n=G.names[G.h],nx=G.names[(G.h+1)%G.names.length];
+  screen({top:{title:'Patata bollente'},body:`<div class="center bombz${G.cat?' withcat':''}">
+   ${G.cat?`<div class="cat-big"><small>Prima di passare, di' a voce</small>${esc(G.cat)}</div>`:''}
+   <div class="bomb" id="bo">💣</div><p class="muted" style="margin:0">Ce l'ha</p><div class="name" id="ph">${esc(n)}</div></div>`,
+   foot:`<button class="btn pass" onclick="patPass()">${G.cat?'Detto! ':''}Passa a<br><span id="pn2">${esc(nx)}</span> →</button>`});
+  const tick=()=>{const el=(Date.now()-G.st)/1000,iv=Math.max(140,650-el*30);beep(Math.floor(el*4)%2?700:900,.04,.12);document.documentElement.style.setProperty('--sp',(iv/1000*.9)+'s');TK=setTimeout(tick,iv)};
+  tick();TB=setTimeout(patBoom,10000+Math.random()*15000);
+}
+function patPass(){
+  const now=Date.now();if(now-G.last<300)return;G.last=now;G.passes++;
+  G.h=(G.h+1)%G.names.length;vib(20);beep(1400,.03,.1);
+  $('#ph').textContent=G.names[G.h];$('#pn2').textContent=G.names[(G.h+1)%G.names.length];
+  const b=$('#bo');b.classList.remove('hop');void b.offsetWidth;b.classList.add('hop');
+}
+function patBoom(){
+  stopAll();vib([300,100,300]);boom();
+  const n=G.names[G.h],p=drawC('pen');stat('boom',n);
+  screen({top:patTop(),body:`<div class="center"><div class="logo xl">💥</div><h1><span>BOOM!</span></h1><p class="muted" style="margin:0">È esplosa in mano a</p><div class="name">${esc(n)}</div>
+   <p class="muted">${G.passes} passaggi${G.cat?' · categoria: '+esc(G.cat):''}</p></div>
+   <div class="tcard bad"><p>${fillH(p,[G.h])}</p></div><div class="say"><b>${esc(n)}</b>, esegui la penitenza. Se ti rifiuti bevi due sorsi.</div>`,
+   foot:`<button class="btn big" onclick="patAfter()">✅ Fatto, avanti</button><button class="btn sec" onclick="patRefuse()">🍺 Rifiuto e bevo due sorsi</button>`});
+  document.body.classList.add('flash');setTimeout(()=>document.body.classList.remove('flash'),500);
+}
+function patRefuse(){const n=G.names[G.h];drink(n,2);stat('ref',n);toast('🍺🍺 '+n+' beve due sorsi');patAfter()}
+function patAfter(){if(serStep())return;patReady()}
+
+</script>
+<script>
+/* =====================================================================
+   Party 18+ — LE VOSTRE CARTE
+   I giocatori scrivono carte proprie (obbligo, verità, più probabile,
+   non ho mai, penitenza). Si salvano in S.custom e cardPool() le mescola
+   nei mazzi a ogni livello di piccantezza.
+   ===================================================================== */
+
+let CT_SEL='obb';
+const CUSTOM_PH={obb:'Es. Imita {A} appena sveglio',ver:'Es. Cosa pensi davvero di {A}?',prob:'Es. Chi è il più probabile a…',mai:'Es. Non ho mai…',pen:'Es. Bevi un sorso per ogni ex che hai'};
+function cardsPage(keep){
+  stopAll();CUR=null;INGAME=false;
+  const L=S.custom;
+  screen({keep,top:{title:'Le vostre carte'},body:`<div class="hero sm"><div class="logo">✍️</div><h1>Le vostre <span>carte</span></h1>
+   <p class="sub">Sfide, domande e penitenze su misura. Finiscono nei mazzi insieme alle altre, a ogni livello.</p></div>
+   <section class="card"><h3 class="cap">Che tipo di carta?</h3>
+    <div class="ctype">${Object.entries(CUSTOM_T).map(([k,v])=>`<button class="${CT_SEL==k?'on':''}" onclick="CT_SEL='${k}';cardsPage(1)">${v.e} ${v.t}</button>`).join('')}</div>
+    <form onsubmit="addCard(event)"><textarea id="cx" maxlength="140" rows="3" placeholder="${CUSTOM_PH[CT_SEL]}"></textarea>
+     <p class="muted" style="margin:6px 0 12px;font-size:14px">Scrivi <b>{A}</b> per mettere nella carta un giocatore a caso, <b>{B}</b> per un secondo.</p>
+     <button class="btn">Aggiungi la carta</button></form></section>
+   ${L.length?`<section class="card"><h3 class="cap">Le carte che avete scritto (${L.length})</h3><ul class="clist">${L.map((c,i)=>`<li><span>${CUSTOM_T[c.t].e}</span><p>${esc(c.x)}</p><button aria-label="Elimina" onclick="rmCard(${i})">✕</button></li>`).join('')}</ul></section>`:''}`});
+}
+function addCard(e){
+  e.preventDefault();const v=$('#cx').value.trim().replace(/\s+/g,' ').slice(0,140);
+  if(v.length<4)return toast('Scrivi almeno qualche parola');
+  if(S.custom.length>=200)return toast('Massimo 200 carte');
+  S.custom.push({t:CT_SEL,x:v});save();DK={};cardsPage(1);toast('Carta aggiunta ✓');
+}
+function rmCard(i){S.custom.splice(i,1);save();DK={};cardsPage(1)}
+
+</script>
+<script>
+/* =====================================================================
+   Party 18+ — MODALITÀ SERATA e PREMI
+   Flusso: serIntro → serStart → serNext (slot che estrae il gioco) → serGo
+           → il gioco chiama serStep() alla fine di ogni turno; esauriti i
+           turni (SER_GAMES.q) si passa da soli al gioco successivo.
+   Fine: serPause → serEnd → awardsPage → shareImg (immagine da salvare).
+   ===================================================================== */
+
+let SER=null; // {n: numero tappa, k: gioco corrente, q: turni previsti, left: turni rimasti, u: unità}
+
+function serIntro(){
+  stopAll();CUR=null;INGAME=false;SER=null;
+  const n=S.players.length,cont=!!S.night||Object.keys(S.st).length>0;
+  screen({top:{title:'Modalità Serata'},body:`<div class="hero sm"><div class="logo">🎉</div><h1>Modalità <span>Serata</span></h1><p class="sub">Niente scelte: l'app decide il gioco, voi giocate.</p></div>
+  <section class="card"><h3 class="cap">Come funziona</h3><ol class="how">
+   <li><span class="n">🎰</span><p>L'app estrae un gioco a sorpresa e vi dice <b>quanti turni</b> dura.</p></li>
+   <li><span class="n">🔁</span><p>Finiti i turni passa da sola al <b>gioco successivo</b>. Se un gioco non vi va, toccate «Cambia gioco».</p></li>
+   <li><span class="n">🏆</span><p>Per smettere toccate <b>‹</b> in alto e poi «Fine serata»: arrivano i <b>premi</b>, da salvare come immagine.</p></li></ol></section>
+  <section class="card"><p style="margin:0;font-size:16.5px">Livello <b>${SPICE[S.spice].e} ${SPICE[S.spice].t}</b> · <b>${n}</b> giocatori</p>
+   <p class="muted" style="margin:6px 0 0">${n<3?'Con meno di 3 giocatori si alternano solo Obbligo o Verità e la Ruota.':'Si alternano tutti e 6 i giochi.'} Il livello si cambia dal menu.</p></section>`,
+  foot:n<2?`<p class="warn">Servono almeno 2 giocatori.</p><button class="btn" onclick="home()">Aggiungi i giocatori</button>`:
+   (cont?`<button class="btn big" onclick="serStart(false)">▶️ Continua la serata</button><button class="btn sec" onclick="serStart(true)">🆕 Nuova serata (azzera premi e sorsi)</button>`
+        :`<button class="btn big" onclick="serStart(true)">🎉 Inizia la serata</button>`)});
+}
+function resetNight(){S.drinks={};S.st={};S.pts={};S.night={start:Date.now(),stages:0};save()}
+function serStart(fresh){
+  if(fresh)resetNight();else if(!S.night){S.night={start:Date.now(),stages:0};save()}
+  ac();wake();SER={n:S.night.stages,k:null};serNext();
+}
+/* Estrae il gioco successivo (pesato, mai lo stesso due volte di fila) e lo presenta con un effetto slot */
+function serNext(change){
+  stopAll();closeSheets();INGAME=false;
+  const n=S.players.length,pool=SER_GAMES.filter(g=>n>=GM[g.k].min&&g.k!==SER.k);
+  let r=Math.random()*pool.reduce((a,g)=>a+g.w,0),g=pool[0];for(const x of pool){r-=x.w;if(r<=0){g=x;break}}
+  if(!change){SER.n++;S.night.stages=SER.n;save()}
+  Object.assign(SER,{k:g.k,q:g.q,left:g.q,u:g.u});CUR=g.k;
+  const gm=GM[g.k];
+  screen({nobar:1,top:{title:'🎉 Serata'},body:`<div class="center"><p class="kicker">Tappa ${SER.n}</p><div class="slot" id="slot">🎰</div>
+   <div class="later" id="lt"><h1>${gm.t}</h1><p class="sub">Per <b>${g.q} ${g.u}</b>, poi si cambia gioco.</p></div></div>
+   <div class="later" id="lr">${howTo(g.k)}</div>`,
+   foot:`<button class="btn big" id="sgo" disabled onclick="serGo()">Via!</button><button class="btn sec" onclick="serNext(true)">🔀 Cambia gioco</button>`});
+  const em=SER_GAMES.map(x=>GM[x.k].e),el=$('#slot');let t=0;
+  const spin=()=>{el.textContent=em[t%em.length];beep(700+t*25,.03,.06);t++;
+    if(t<14)TK=setTimeout(spin,55+t*12);
+    else{el.textContent=gm.e;el.classList.add('land');$('#lt').classList.add('shown');$('#lr').classList.add('shown');$('#sgo').disabled=false;tune([523,659,784]);vib(30)}};
+  spin();
+}
+function serGo(){INGAME=true;startG(SER.k)}
+/* Chiamata dai giochi a fine turno: true se la tappa è finita e si è già passati al gioco successivo */
+function serStep(){if(!SER)return false;SER.left--;if(SER.left<=0){toast('Tappa finita! Arriva un nuovo gioco');serNext();return true}return false}
+function serBar(){const done=SER.q-SER.left;
+  return `<div class="serbar"><span>🎉 Tappa ${SER.n}</span><span class="sdots">${Array.from({length:SER.q},(_,i)=>`<i class="${i<done?'on':''}"></i>`).join('')}</span><span>${SER.left<=1?'ultimo turno':'ancora '+SER.left}</span></div>`}
+function serPause(){
+  const d=sheet(`<h2>Pausa serata</h2><p class="muted center">Tappa ${SER.n} · ${GM[SER.k]?GM[SER.k].t:''}</p><button class="btn" id="s1">⏭️ Passa al prossimo gioco</button><button class="btn gold" id="s2">🏆 Fine serata: vedi i premi</button><button class="btn sec" id="s3">Continua a giocare</button>`);
+  d.querySelector('#s1').onclick=()=>serNext();d.querySelector('#s2').onclick=serEnd;d.querySelector('#s3').onclick=()=>d.remove();
+}
+function serEnd(){stopAll();closeSheets();SER=null;INGAME=false;awardsPage(true)}
+
+/* ---------- Premi ---------- */
+function calcAwards(){
+  return AWARDS.map(a=>{const o=a.k=='drinks'?S.drinks:(S.st[a.k]||{}),e=Object.entries(o).filter(([,v])=>v>0);
+    if(!e.length)return null;const m=Math.max(...e.map(x=>x[1]));return Object.assign({},a,{who:e.filter(x=>x[1]==m).map(x=>x[0]),v:m})}).filter(Boolean);
+}
+function awardsPage(party){
+  stopAll();closeSheets();SER=null;INGAME=false;CUR=null;
+  const A=calcAwards(),N=S.night,mins=N?Math.max(1,Math.round((Date.now()-N.start)/60000)):0;
+  screen({top:{title:'Premi della serata'},body:`<div class="hero sm"><div class="logo">🏆</div><h1>I <span>premi</span></h1>
+   <p class="sub">${N&&N.stages?`${N.stages} ${N.stages==1?'tappa':'tappe'} · ${mins} minuti di peccati`:'Il riepilogo della serata'}</p></div>
+   ${A.length?`<div class="awards">${A.map((a,i)=>`<div class="award" style="animation-delay:${(i*.08).toFixed(2)}s"><b>${a.e}</b><div><small>${a.t}</small><h3>${a.who.map(esc).join(' e ')}</h3><p>${a.d(a.v)}</p></div></div>`).join('')}</div>`
+     :'<section class="card center"><p style="margin:0">Ancora nessun premio: giocate un po\' e tornate qui.</p></section>'}`,
+   foot:`${A.length?'<button class="btn big gold" onclick="shareImg()">📸 Crea l\'immagine da condividere</button>':''}<button class="btn sec" onclick="newNight()">🆕 Nuova serata (azzera tutto)</button>`});
+  if(party&&A.length){confetti();tune([523,659,784,1047,1319])}
+}
+function newNight(){
+  const d=sheet(`<h2>Nuova serata?</h2><p class="muted center">Si azzerano premi, sorsi e classifica dell'Impostore. I giocatori e le vostre carte restano.</p><button class="btn" id="n1">Sì, azzera</button><button class="btn sec" id="n2">Annulla</button>`);
+  d.querySelector('#n1').onclick=()=>{S.drinks={};S.st={};S.pts={};S.night=null;save();home();toast('Nuova serata: tutto azzerato')};
+  d.querySelector('#n2').onclick=()=>d.remove();
+}
+/* Immagine 1080×1350 (formato post Instagram) con i premi, mostrata in un pannello: si salva tenendo premuto */
+function rrect(x,X,Y,w,h,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+w,Y,X+w,Y+h,r);x.arcTo(X+w,Y+h,X,Y+h,r);x.arcTo(X,Y+h,X,Y,r);x.arcTo(X,Y,X+w,Y,r);x.closePath()}
+function fitText(x,t,w){if(x.measureText(t).width<=w)return t;while(t.length>1&&x.measureText(t+'…').width>w)t=t.slice(0,-1);return t+'…'}
+async function shareImg(){
+  const A=calcAwards().slice(0,8);try{await document.fonts.ready}catch(e){}
+  const W=1080,H=1350,c=document.createElement('canvas');c.width=W;c.height=H;
+  const x=c.getContext&&c.getContext('2d');if(!x)return toast('Questo browser non riesce a creare l\'immagine');
+  const F='Fredoka, system-ui, sans-serif';
+  let g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#2a1458');g.addColorStop(.55,'#100c1f');g.addColorStop(1,'#5a1030');x.fillStyle=g;x.fillRect(0,0,W,H);
+  x.textAlign='center';x.textBaseline='alphabetic';
+  x.font=`700 88px ${F}`;const tg=x.createLinearGradient(160,0,920,0);tg.addColorStop(0,'#ff3d68');tg.addColorStop(1,'#ffc933');x.fillStyle=tg;x.fillText('I premi della serata',W/2,150);
+  x.font=`500 36px ${F}`;x.fillStyle='#aaa5cc';x.fillText('Party 18+ · '+new Date().toLocaleDateString('it-IT',{day:'numeric',month:'long',year:'numeric'}),W/2,212);
+  const top=270,rh=Math.min(130,(H-top-110)/Math.max(A.length,1));
+  A.forEach((a,i)=>{const y=top+i*rh,h=rh-16,cy=y+h/2;
+    x.fillStyle='rgba(255,255,255,.08)';rrect(x,60,y,W-120,h,28);x.fill();
+    x.textAlign='center';x.fillStyle='#ffffff';x.font=`${Math.round(h*.5)}px ${F}`;x.fillText(a.e,140,cy+h*.18);
+    x.textAlign='left';x.fillStyle='#ffc933';x.font=`600 28px ${F}`;x.fillText(a.t.toUpperCase(),210,cy-14);
+    x.textAlign='right';x.fillStyle='#aaa5cc';x.font=`500 28px ${F}`;x.fillText(a.d(a.v),W-95,cy-14);
+    x.textAlign='left';x.fillStyle='#ffffff';x.font=`700 44px ${F}`;x.fillText(fitText(x,a.who.join(' e '),W-320),210,cy+34);
+  });
+  x.textAlign='center';x.fillStyle='#aaa5cc';x.font=`500 32px ${F}`;x.fillText('🔞 Party 18+ · un telefono, tanti peccati',W/2,H-55);
+  const url=c.toDataURL('image/png');
+  sheet(`<h2>La vostra serata</h2><img class="shareimg" src="${url}" alt="Premi della serata"><p class="muted center">Tieni premuto sull'immagine per salvarla o condividerla.<br>Da computer: tasto destro e «Salva immagine».</p><button class="btn" onclick="closeSheets()">Fatto</button>`);
+}
+
+</script>
+<script>
+/* =====================================================================
+   Party 18+ — AVVIO
+   Va caricato per ultimo: tutti gli altri script definiscono solo funzioni e dati.
+   ===================================================================== */
+S.ok?home():gate();
+
+</script>
+</body>
+</html>
